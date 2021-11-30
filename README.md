@@ -1,4 +1,4 @@
-<p>Golden West College Evaluation System</p>
+<h2 align="center">Golden West College Evaluation System</h2>
 <hr>
 <p>Installation on Windows with XAMPP:</p>
 
