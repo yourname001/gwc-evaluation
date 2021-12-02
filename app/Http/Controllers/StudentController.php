@@ -62,7 +62,7 @@ class StudentController extends Controller
         }
         $data = ([
 			'roles' => $roles->get(),
-			'sections' => Section::get()
+			
 		]);
 		/* if(!Auth::user()->hasrole('System Administrator')){
 			$data = ([

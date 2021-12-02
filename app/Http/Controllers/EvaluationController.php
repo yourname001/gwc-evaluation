@@ -154,7 +154,7 @@ class EvaluationController extends Controller
 
         $evaluation = Evaluation::create([
             'title' => $request->get('title'),
-            'status' => $status,
+            //'status' => $status,
             'start_date' => $start_date,
             'end_date' => $end_date,
             'description' => $request->get('description'),
@@ -347,7 +347,7 @@ class EvaluationController extends Controller
 
         $evaluation->update([
             'title' => $request->get('title'),
-            'status' => $status,
+            //'status' => $status,
             'start_date' => $start_date,
             'end_date' => $end_date,
             'description' => $request->get('description'),

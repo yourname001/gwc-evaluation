@@ -98,8 +98,9 @@
                 </div>
                 <form action="{{ route('users.store') }}" method="POST" autocomplete="off">
                     @csrf
-                    <input type="hidden" name="type" value="student">
+                    <input type="hidden" name="type" value="faculty">
                     <input type="hidden" name="user_id" value="{{ $faculty->id }}">
+                     <input type="hidden" name="username" value="{{ $faculty->faculty_id }}">
                     <div id="userCredentials">
                         {{-- <label>Role:</label><br>
                         <select class="form-control select2" name="role" required>

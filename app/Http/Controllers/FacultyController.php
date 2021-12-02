@@ -92,15 +92,16 @@ class FacultyController extends Controller
         
         if($request->get('add_user_account')){
             $request->validate([
-                'username' => ['required', 'string', 'max:255', 'unique:users,username'],
+                'username' => ['string', 'max:255', 'unique:users,username'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'password' => ['required', 'string', 'min:6', 'confirmed'],
+                /*'password' => ['required', 'string', 'min:6', 'confirmed'],*/
             ]);
-
+            $password = base64_encode(time());
             $user = User::create([
-                'username' => $request->get('username'),
+                'username' => $request->get('faculty_id'),
                 'email' => $request->get('email'),
-                'password' => Hash::make($request->get('password'))
+                'password' => Hash::make($password),
+                'temp_password' => $password,
             ]);
 
             $user->assignRole(3);

@@ -79,30 +79,9 @@
                                 </div>
                             </div>
                             <div id="userCredentials">
-                                <label>Role:</label><br>
-                                <select class="form-control select2" name="role" required>
-                                    <option></option>
-                                    @foreach ($roles as $role)
-                                        <option value="{{ $role->id }}">
-                                            {{ $role->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                <div class="form-group">
-                                    <label>Username:</label><br>
-                                    <input class="form-control" type="text" name="username" required>
-                                </div>
                                 <div class="form-group">
                                     <label>Email:</label><br>
                                     <input class="form-control" type="email" name="email" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Password:</label><br>
-                                    <input id="password" type="password" class="form-control" name="password" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Confirm Password:</label><br>
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                                 </div>
                             </div>
                         </div>

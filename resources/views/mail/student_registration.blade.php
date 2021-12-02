@@ -8,7 +8,7 @@
 </head>
 <body>
     <p>
-        Hello {{ $user->student->student->first_name }}, you register an student account in <a href="{{ config('app.url') }}" target="_blank">GWC Evaluation</a>.
+        Hello {{ $student->first_name }}, you register an student account in <a href="{{ config('app.url') }}" target="_blank">GWC Evaluation</a>.
         Your account is under verification. You'll get notified immediately if your account is verified.
     </p>
     <p>
@@ -16,7 +16,13 @@
         <ul style="list-style: none">
             <li>
                 <b>First Name:</b>
-                {{ $user->student->first_name }}
+                {{ $student->first_name }}
+
+            </li>
+            <li>
+                <b>Last Name:</b>
+                {{ $student->last_name }}
+                
             </li>
         </ul>
     </p>

@@ -82,10 +82,10 @@
                     <span class="badge badge-warning">Under Validation</span>
                 @endif
                 <br>
-                <label>Username #: </label>
+                <label>Username: </label>
                 {{ $student->user->user->username }}
                 <br>
-                <label>Email #: </label>
+                <label>Email: </label>
                 {{ $student->user->user->email }}
                 @else
                 <span class="text-danger">N/A</span>

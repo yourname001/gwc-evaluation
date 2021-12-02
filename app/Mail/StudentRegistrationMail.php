@@ -12,7 +12,7 @@ class StudentRegistrationMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $user;
+    public $student;
 
     /**
      * Create a new message instance.
@@ -21,7 +21,7 @@ class StudentRegistrationMail extends Mailable
      */
     public function __construct(User $user)
     {
-        $this->user = $user;
+        $this->student = $user->student->student;
     }
 
     /**
@@ -32,7 +32,7 @@ class StudentRegistrationMail extends Mailable
     public function build()
     {
         $data = [
-            'user' => $this->user
+            'student' => $this->student
         ];
         return $this->subject('Registration')
             ->view('mail.student_registration', $data);

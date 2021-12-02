@@ -15,6 +15,7 @@ use Image;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AccountActivatedMail;
 use App\Mail\AccountDeactivatedMail;
+use App\Mail\StudentRegistrationMail;
 
 class UserController extends Controller
 {
@@ -92,7 +93,7 @@ class UserController extends Controller
             $user = User::create([
                 'username' => $request->get('username'),
                 'email' => $request->get('email'),
-                'password' => Hash::make($pasword),
+                'password' => Hash::make($password),
                 'temp_password' => $password,
             ]);
             $user->assignRole(4);
@@ -100,11 +101,12 @@ class UserController extends Controller
                 'user_id' => $user->id,
                 'student_id' => $request->get('user_id')
             ]);
+            Mail::to($user->email)->send(new StudentRegistrationMail($user));
         }else{
             $user = User::create([
                 'username' => $request->get('username'),
                 'email' => $request->get('email'),
-                'password' => Hash::make($pasword),
+                'password' => Hash::make($password),
                 'temp_password' => $password,
             ]);
             $user->assignRole(3);
@@ -113,6 +115,7 @@ class UserController extends Controller
                 'faculty_id' => $request->get('user_id')
             ]);
         }
+        
 		return back()->with('alert-success', 'Saved');
     }
 
@@ -255,6 +258,7 @@ class UserController extends Controller
 
     public function deactivate(User $user)
     {
+        $password = base64_encode(time());
         Mail::to($user->email)->send(new AccountDeactivatedMail($user));
         $user->update([
             'is_verified' => 0,
