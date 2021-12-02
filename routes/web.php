@@ -108,6 +108,9 @@ Route::group(array('middleware'=>['auth']), function() {
 	 * Question
 	 */
 	Route::resource('questions', 'QuestionController');
+
+	Route::get('question/set-active/{question}', 'QuestionController@setActive')->name('questions.set_active');
+	Route::get('question/set-inactive/{question}', 'QuestionController@setInactive')->name('questions.set_inactive');
 	// restore
 	Route::post('questions_restore/{question}', [
 		'as' => 'questions.restore',

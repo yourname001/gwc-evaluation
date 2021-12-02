@@ -123,27 +123,14 @@
                         </a>
                     </li>
                     @endcan
-                    @canany('questions.index', 'questions_groups.index')
+                    @can('questions.index')
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{ route('questions.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-question-circle"></i>
-                            <p>
-                                Question Mangement
-                                <i class="fas fa-angle-left right"></i>
-                                {{-- <span class="badge badge-info right">6</span> --}}
-                            </p>
+                            <p>Questions</p>
                         </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ route('questions.index') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Questions</p>
-                                </a>
-                            </li>
-                            
-                        </ul>
                     </li>
-                    @endcanany
+                    @endcan
                     @canany('roles.index', 'permission.index')
                     <li class="nav-item">
                         <a href="#" class="nav-link">

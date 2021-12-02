@@ -19,7 +19,7 @@ class QuestionController extends Controller
             'questions' => $questions->get()
         ];
         
-        return view('question_management.questions.index', $data);
+        return view('questions.index', $data);
     }
 
     /**
@@ -31,7 +31,7 @@ class QuestionController extends Controller
     {
         if(request()->ajax()) {
             return response()->json([
-                'modal_content' => view('question_management.questions.create')->render()
+                'modal_content' => view('questions.create')->render()
             ]);
         }
     }
@@ -50,7 +50,7 @@ class QuestionController extends Controller
 
         Question::create([
             'question' => $request->get('question'),
-            'is_active' => $request->get('is_active')
+            'is_active' => 1
         ]);
 
         return redirect()->route('questions.index');
@@ -66,7 +66,7 @@ class QuestionController extends Controller
     {
         if(request()->ajax()) {
             return response()->json([
-                'modal_content' => view('question_management.questions.show', compact('question'))->render()
+                'modal_content' => view('questions.show', compact('question'))->render()
             ]);
         }
     }
@@ -80,8 +80,8 @@ class QuestionController extends Controller
     public function edit(Question $question)
     {
         if(request()->ajax()) {
-            return reponse()->json([
-                'modal_content' => view('question_management.questions.edit', compact('question'))->render()
+            return response()->json([
+                'modal_content' => view('questions.edit', compact('question'))->render()
             ]);
         }
     }
@@ -100,8 +100,7 @@ class QuestionController extends Controller
         ]);
 
         $question->update([
-            'question' => $request->get('question'),
-            'is_active' => $request->get('is_active'),
+            'question' => $request->get('question')
         ]);
 
         return redirect()->route('questions.index');
@@ -128,5 +127,21 @@ class QuestionController extends Controller
 		$question = Question::withTrashed()->find($question);
 		$question->restore();
 		return back()->with('alert-success','Restored');
-	}
+    }
+    
+    public function setActive(Question $question)
+    {
+        $question->update([
+            'is_active' => 1
+        ]);
+        return redirect()->route('questions.index')->with('alert-success', 'Question set as active');
+    }
+
+    public function setInactive(Question $question)
+    {
+        $question->update([
+            'is_active' => 0
+        ]);
+        return redirect()->route('questions.index')->with('alert-success', 'Question set as inactive');
+    }
 }

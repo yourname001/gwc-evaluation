@@ -12,6 +12,8 @@ class Faculty extends Model
 {
     use SoftDeletes;
     
+    protected $table = 'faculties';
+
     protected $fillable = [
         'image',
         'faculty_id',

@@ -1,24 +1,18 @@
 @extends('layouts.adminlte')
 @section('content')
-<!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
                 <h1 class="m-0">Questions</h1>
             </div>
-            <!-- /.col -->
             <div class="col-sm-6 text-right">
                 @can('questions.create')
                     <button class="btn btn-default" type="button" data-toggle="modal-ajax" data-href="{{ route('questions.create') }}" data-target="#createQuestion"><i class="fa fa-plus"></i> Add</button>
                 @endcan
             </div>
-            <!-- /.col -->
         </div>
-        <!-- /.row -->
     </div>
-    <!-- /.container-fluid -->
-
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -42,7 +36,13 @@
                                 @role('System Administrator')
                                 <td>{{ $question->id }}</td>
                                 @endrole
-                                <td>{{ $question->is_active }}</td>
+                                <td>
+                                    @if($question->is_active == 1)
+                                    <span class="badge badge-success">Active</span>
+                                    @else
+                                    <span class="badge badge-warning">Inactive</span>
+                                    @endif
+                                </td>
                                 <td>{{ $question->question }}</td>
                                 @role('System Administrator')
                                     <td class="text-center">

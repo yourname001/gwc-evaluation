@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Student;
-use App\Models\Section;
-use App\Models\StudentSection;
 use App\Models\Faculty;
 use App\Models\User;
 use App\Models\UserStudent;
@@ -41,12 +39,7 @@ class RandomIdentityController extends Controller
 				'contact_number' => $contactNumber,
 				'address' => ($brgy == '' ? '' : $brgy . ', ') . $city . ', ' . $province
 			]);
-			
-			$section = Section::inRandomOrder()->first();
-			StudentSection::create([
-				'student_id' => $student->id,
-				'section_id' => $section->id
-			]);
+		
 
 			if($request->get('add_account') == 'add_account'){
 				// $email = $this->email($student->first_name, $last_name, $student->student_id);

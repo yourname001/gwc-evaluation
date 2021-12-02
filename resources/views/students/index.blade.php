@@ -37,7 +37,7 @@
                     </thead>
                     <tbody>
                         @foreach ($students as $student)
-                        <tr @unlessrole('System Administrator') @can('students.show') data-toggle="modal-ajax" data-target="#showStudent" data-href="{{ route('students.show', $student->id) }}"  @endcan @else class="{{ $student->trashed() ? 'table-danger' : '' }}" @endunlessrole>
+                        <tr @unlessrole('System Administrator') @can('students.show') data-toggle="tr-link" data-href="{{ route('students.show', $student->id) }}"  @endcan @else class="{{ $student->trashed() ? 'table-danger' : '' }}" @endunlessrole>
                             @role('System Administrator')
                             <td>{{ $student->id }}</td>
                             @endrole
