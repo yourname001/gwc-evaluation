@@ -12,9 +12,11 @@
                     <a class="btn btn-default text-success" href="javascript:void(0)" onclick="restoreFromTable(this)" data-href="{{ route('faculties.restore', $faculty->id) }}"><i class="fad fa-download"></i> Restore</a>
                     @endcan
                 @else
-                    @can('faculties.destroy')
-                    <a class="btn btn-default text-danger" href="javascript:void(0)" onclick="deleteFromTable(this)" data-href="{{ route('faculties.destroy', $faculty->id) }}"><i class="fad fa-trash-alt"></i> Delete</a>
-                    @endcan
+                    @if($faculty->id > 1)
+                        @can('faculties.destroy')
+                        <a class="btn btn-default text-danger" href="javascript:void(0)" onclick="deleteFromTable(this)" data-href="{{ route('faculties.destroy', $faculty->id) }}"><i class="fad fa-trash-alt"></i> Delete</a>
+                        @endcan
+                    @endif
                 @endif
                 @can('faculties.edit')
                     <a class="btn btn-default text-primary" href="javascript:void(0)" data-toggle="modal-ajax" data-href="{{ route('faculties.edit', $faculty->id) }}" data-target="#editFaculty"><i class="fad fa-edit"></i> Edit</a>

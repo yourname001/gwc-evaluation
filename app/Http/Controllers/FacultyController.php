@@ -187,12 +187,16 @@ class FacultyController extends Controller
      */
     public function destroy(Faculty $faculty)
 	{
-		if (request()->get('permanent')) {
-			$faculty->forceDelete();
-		}else{
-			$faculty->delete();
-		}
-		return back()->with('alert-danger','Deleted');
+        if($faculty->id > 1){
+            if (request()->get('permanent')) {
+                $faculty->forceDelete();
+            }else{
+                $faculty->delete();
+            }
+            return back()->with('alert-danger','Deleted');
+        }else{
+            return back()->with('alert-waring','You cannot delete the data of System Administrator');
+        }
 	}
 
 	public function restore($faculty)

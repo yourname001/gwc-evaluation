@@ -224,7 +224,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
 	{
-        if($user->id != 1){
+        if($user->id > 1){
             if (request()->get('permanent')) {
                 $user->forceDelete();
             }else{

@@ -68,7 +68,9 @@
                                         <a class="text-success" href="javascript:void(0)" onclick="restoreFromTable(this)" data-href="{{ route('faculties.restore', $faculty->id) }}"><i class="fad fa-download fa-lg"></i></a>
                                         @else
                                             <a href="{{ route('faculties.show',$faculty->id) }}"><i class="fad fa-file fa-lg"></i></a>
+                                            @if($faculty->id > 1)
                                             <a class="text-danger" href="javascript:void(0)" onclick="deleteFromTable(this)" data-href="{{ route('faculties.destroy', $faculty->id) }}"><i class="fad fa-trash-alt fa-lg"></i></a>
+                                            @endif
                                         @endif
                                     </td>
                                 @endrole
