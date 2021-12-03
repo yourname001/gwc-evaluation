@@ -61,11 +61,11 @@
                             <td>{{ $student->last_name }}</td>
                             @role('System Administrator')
                                 <td class="text-center">
-                                    <a href="{{ route('students.show',$student->id) }}"><i class="fad fa-file fa-lg"></i></a>
                                     {{-- <a href="javascript:void(0)" data-toggle="modal-ajax" data-target="#editStudent" data-href="{{ route('students.edit',$student->id) }}"><i class="fad fa-edit fa-lg"></i></a> --}}
                                     @if ($student->trashed())
-                                        <a class="text-success" href="javascript:void(0)" onclick="restoreFromTable(this)" data-href="{{ route('students.restore', $student->id) }}"><i class="fad fa-download fa-lg"></i></a>
+                                    <a class="text-success" href="javascript:void(0)" onclick="restoreFromTable(this)" data-href="{{ route('students.restore', $student->id) }}"><i class="fad fa-download fa-lg"></i></a>
                                     @else
+                                        <a href="{{ route('students.show',$student->id) }}"><i class="fad fa-file fa-lg"></i></a>
                                         <a class="text-danger" href="javascript:void(0)" onclick="deleteFromTable(this)" data-href="{{ route('students.destroy', $student->id) }}"><i class="fad fa-trash-alt fa-lg"></i></a>
                                     @endif
                                 </td>

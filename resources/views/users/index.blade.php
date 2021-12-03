@@ -38,7 +38,7 @@
                         </thead>
                         <tbody>
                             @foreach ($users as $user)
-                            <tr @unlessrole('System Administrator') @can('users.show') data-toggle="tr-link" data-href="{{ route('users.show', $user->id) }}"  @endcan @else class="{{ $user->trashed() ? 'table-danger' : '' }}" @endunlessrole>
+                            <tr @unlessrole('System Administrator') @can('users.show') data-toggle="tr-link" data-href="{{ route('users.show', $user->id) }}"  @endcan @else class="{{ $user->trashed() || $user->userInfo()->trashed() ? 'table-danger' : '' }}" @endunlessrole>
                             @if(Auth::user()->hasrole('System Administrator'))
                             <td>
                                 {{ $user->id }}
@@ -50,14 +50,18 @@
                                 @else
                                 <span class="badge badge-warning">Under Validation</span>
                                 @endif
+                                @if($user->userInfo()->trashed())
+                                <span class="badge badge-danger">Data DELETED</span>
+                                @endif
                             </td>
                             <td>{{ $user->role->role->name }}</td>
                             <td>
-                                @isset($user->student->student)
-                                    {{ $user->student->student->fullname('f-m-l') }}
+                                {{ $user->userInfo()->fullname('') }}
+                                {{-- @isset($user->student->student)
+                                    {{ $user->student->student->fullname('') }}
                                 @else
-                                    {{ $user->faculty->faculty->fullname('f-m-l') }}
-                                @endif
+                                    {{ $user->faculty->faculty->fullname('') }}
+                                @endif --}}
                             </td>
                             <td>{{ $user->username }}</td>
                             <td>{{ $user->email }}</td>

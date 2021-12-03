@@ -9,6 +9,9 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\FileAttachment;
 use App\Models\UserFileAttachment;
+use App\Models\Faculty;
+use App\Models\Student;
+use Auth;
 
 class User extends Authenticatable
 {
@@ -65,9 +68,17 @@ class User extends Authenticatable
     public function userInfo()
     {
         if(isset($this->student->id)){
-            return $this->student->student;
+            if(Auth::user()->hasrole('System Administrator')){
+                return Student::withTrashed()->find($this->student->student_id);
+            }else{
+                return $this->student->student;
+            }
         }else{
-            return $this->faculty->faculty;
+            if(Auth::user()->hasrole('System Administrator')){
+                return Faculty::withTrashed()->find($this->faculty->faculty_id);
+            }else{
+                return $this->faculty->faculty;
+            }
         }
     }
 

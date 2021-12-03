@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Student;
+use App\Models\Faculty;
 use Auth;
 
 class LoginController extends Controller
@@ -70,11 +72,29 @@ class LoginController extends Controller
                     return redirect()->route('admin.home');
                 }
             } */
-            if(Auth::user()->hasrole('System Administrator') || Auth::user()->hasrole('Administrator')){
+            /* if(Auth::user()->hasrole('System Administrator') || Auth::user()->hasrole('Administrator')){
                 return redirect()->route('home');
             }elseif(Auth::user()->hasrole('Faculty') || Auth::user()->hasrole('Student')){
                 return redirect()->route('evaluations.index');
+            } */
+            if(isset(Auth::user()->student->id)){
+                $student = Student::withTrashed()->find(Auth::user()->student->student_id);
+                if($student->trashed()){
+                    Auth::logout();
+                    return redirect()->route('login')
+                    ->withInput($request->only('username', 'remember'))
+                    ->withErrors(['username' => 'These credentials do not match our records.']);
+                }
+            }else{
+                $faculty = Faculty::withTrashed()->find(Auth::user()->faculty->faculty_id);
+                if($faculty->trashed()){
+                    Auth::logout();
+                    return redirect()->route('login')
+                    ->withInput($request->only('username', 'remember'))
+                    ->withErrors(['username' => 'These credentials do not match our records.']);
+                }
             }
+            return redirect()->route('evaluations.index');
         }else{
             $user = User::where([
                 ['is_verified', '=', 0],
