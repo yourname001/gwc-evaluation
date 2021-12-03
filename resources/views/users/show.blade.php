@@ -1,10 +1,5 @@
 @php
-    $user_info;
-    if(isset($user->student->id)){
-        $user_info = $user->student->student;
-    }else{
-        $user_info = $user->faculty->faculty;
-    }
+    $user_info = $user->userInfo();
 @endphp
 @extends('layouts.adminlte')
 @section('content')
@@ -92,7 +87,7 @@
                 @endif
                 <br>
                 <label class="mb-0">Role:</label>
-                {{ $user->role->name }}
+                {{ $user->role->role->name }}
                 <br>
                 <label class="mb-0">Username:</label>
                 {{ $user->username }}
@@ -101,7 +96,12 @@
                 {{ $user->email }}
             </div>
             <div class="col-md-3">
-                <legend>Your Info</legend>
+                <legend>
+                    User Info
+                    @if($user->userInfo()->trashed())
+                    <span class="badge badge-danger">Data DELETED</span>
+                    @endif
+                </legend>
                 @isset($user->student->id)
                     <label class="mb-0">Student ID:</label>
                     {{ $user_info->student_id }}
