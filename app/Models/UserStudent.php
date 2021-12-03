@@ -17,7 +17,7 @@ class UserStudent extends Model
     ];
 
     public function user(){
-        return $this->belongsTo('App\Models\User', 'user_id');
+        return $this->belongsTo('App\Models\User', 'user_id')->withTrashed();
     }
 
     public function student(){

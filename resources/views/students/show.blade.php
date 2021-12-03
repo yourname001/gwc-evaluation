@@ -76,61 +76,44 @@
             <div class="col-md-3">
                 <label>Account Status: </label>
                 @isset ($student->user)
-                @if($student->user->user->is_verified == 1)
-                    <span class="badge badge-success">Verified</span>
+                    @if($student->user->user->trashed())
+                        <span class="badge badge-danger">User data DELETED</span>
+                    @else
+                        @if($student->user->user->is_verified == 1)
+                            <span class="badge badge-success">Verified</span>
+                        @else
+                            <span class="badge badge-warning">Under Validation</span>
+                        @endif
+                    @endif
+                    <br>
+                    <label>Username: </label>
+                    {{ $student->user->user->username }}
+                    <br>
+                    <label>Email: </label>
+                    {{ $student->user->user->email }}
                 @else
-                    <span class="badge badge-warning">Under Validation</span>
-                @endif
-                <br>
-                <label>Username: </label>
-                {{ $student->user->user->username }}
-                <br>
-                <label>Email: </label>
-                {{ $student->user->user->email }}
-                @else
-                <span class="text-danger">N/A</span>
-                @can('users.create')
-                <div class="checkbox">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" name="add_user_account" value="1" id="addUserAccount">
-                        <label class="custom-control-label" for="addUserAccount">Add User Account?</label>
-                    </div>
-                </div>
-                <form action="{{ route('users.store') }}" method="POST" autocomplete="off">
-                    @csrf
-                    <input type="hidden" name="type" value="student">
-                    <input type="hidden" name="user_id" value="{{ $student->id }}">
-                    <input type="hidden" name="username" value="{{ $student->student_id }}">
-                    <div id="userCredentials">
-                        {{-- <label>Role:</label><br>
-                        <select class="form-control select2" name="role" required>
-                            <option></option>
-                            @foreach ($roles as $role)
-                                <option value="{{ $role->id }}">
-                                    {{ $role->name }}
-                                </option>
-                            @endforeach
-                        </select> --}}
-                        {{-- <div class="form-group">
-                            <label>Username:</label><br>
-                            <input class="form-control" type="text" required>
-                        </div> --}}
-                        <div class="form-group">
-                            <label>Email:</label><br>
-                            <input class="form-control" type="email" name="email" required>
+                    <span class="text-danger">N/A</span>
+                    @can('users.create')
+                        <div class="checkbox">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" name="add_user_account" value="1" id="addUserAccount">
+                                <label class="custom-control-label" for="addUserAccount">Add User Account?</label>
+                            </div>
                         </div>
-                        {{-- <div class="form-group">
-                            <label>Password:</label><br>
-                            <input id="password" type="password" class="form-control" name="password" required>
+                        <form action="{{ route('users.store') }}" method="POST" autocomplete="off">
+                            @csrf
+                            <input type="hidden" name="type" value="student">
+                            <input type="hidden" name="user_id" value="{{ $student->id }}">
+                            <input type="hidden" name="username" value="{{ $student->student_id }}">
+                            <div id="userCredentials">
+                                <div class="form-group">
+                                    <label>Email:</label><br>
+                                    <input class="form-control" type="email" name="email" required>
+                                </div>
+                                <button class="btn btn-default text-success" type="submit"><i class="fas fa-save"></i> Save</button>
+                            </form>
                         </div>
-                        <div class="form-group">
-                            <label>Confirm Password:</label><br>
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                        </div> --}}
-                        <button class="btn btn-default text-success" type="submit"><i class="fas fa-save"></i> Save</button>
-                    </form>
-                </div>
-                @endcan
+                    @endcan
                 @endif
             </div>
         </div>

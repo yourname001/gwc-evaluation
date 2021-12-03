@@ -28,7 +28,7 @@ class Classes extends Model
 
     public function faculty()
     {
-        return $this->belongsTo('App\Models\Faculty', 'faculty_id');
+        return $this->belongsTo('App\Models\Faculty', 'faculty_id')->withTrashed();
     }
     
     public function students()

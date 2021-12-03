@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\EvaluationFaculty;
 use App\Models\EvaluationClasses;
 use App\Models\Classes;
+use App\Models\User;
+use App\Models\UserFaculty;
+use Auth;
 
 class Faculty extends Model
 {
@@ -28,6 +31,10 @@ class Faculty extends Model
     ];
 
     public function user() {
+        /* if(Auth::user()->hasrole('System Administrator')){
+            $user = UserFaculty::withTrashed()->where('faculty_id', $this->id)->first();
+            return $user;
+        } */
         return $this->hasOne('App\Models\UserFaculty', 'faculty_id');
     }
 
@@ -95,6 +102,7 @@ class Faculty extends Model
 	{
         $format = explode('-', $format);
         $name = "";
+        $trashedBadge = "";
         for ($i=0; $i < count($format); $i++) { 
             switch ($format[$i]) {
                 case 'f':
@@ -142,8 +150,12 @@ class Faculty extends Model
                     break;
             }
         }
+
+        if($this->trashed()){
+            $trashedBadge .= ' <span class="badge badge-danger">Deleted</span>';
+        }
 		
-		return $name;
+		return $name.$trashedBadge;
     }
     
     public function avatar()

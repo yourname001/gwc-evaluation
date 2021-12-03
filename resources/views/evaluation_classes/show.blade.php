@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">{{ $evaluationClass->class->faculty->fullname('') }} | {{ $evaluationClass->class->course->course_code }} - {{ $evaluationClass->class->course->title }} | {{ $evaluationClass->class->section }}</h1>
+                <h1 class="m-0">{!! $evaluationClass->class->faculty->fullname('') !!} | {{ $evaluationClass->class->course->course_code }} - {{ $evaluationClass->class->course->title }} | {{ $evaluationClass->class->section }}</h1>
             </div>
             <div class="col-sm-6 text-right">
                 @hasrole('System Administrator')

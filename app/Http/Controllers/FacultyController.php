@@ -193,9 +193,9 @@ class FacultyController extends Controller
             }else{
                 $faculty->delete();
             }
-            return back()->with('alert-danger','Deleted');
+            return redirect()->route('faculties.index')->with('alert-danger','Deleted');
         }else{
-            return back()->with('alert-waring','You cannot delete the data of System Administrator');
+            return redirect()->route('faculties.index')->with('alert-waring','You cannot delete the data of System Administrator');
         }
 	}
 
@@ -203,7 +203,7 @@ class FacultyController extends Controller
 	{
 		$faculty = Faculty::withTrashed()->find($faculty);
 		$faculty->restore();
-		return back()->with('alert-success','Restored');
+		return redirect()->route('faculties.index')->with('alert-success','Restored');
     }
 
     public function changeAvatar(Request $request, Faculty $faculty)

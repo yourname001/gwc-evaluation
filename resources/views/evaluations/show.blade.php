@@ -28,8 +28,13 @@
                         <h3>
                             {{ $evaluationClass->class->course->course_code }}
                         </h3>
-                        <p>{{ $evaluationClass->class->course->title }}</p>
-                        <p>Section: {{ $evaluationClass->class->section }}</p>
+                        <p>
+                            {{ $evaluationClass->class->course->title }}
+                            <br>
+                            Section: {{ $evaluationClass->class->section }}
+                            <br>
+                            {!! $evaluationClass->class->faculty->fullname('') !!}
+                        </p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-book"></i>

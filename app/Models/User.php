@@ -73,13 +73,15 @@ class User extends Authenticatable
             }else{
                 return $this->student->student;
             }
-        }else{
+        }
+        if(isset($this->faculty->id)){
             if(Auth::user()->hasrole('System Administrator')){
                 return Faculty::withTrashed()->find($this->faculty->faculty_id);
             }else{
                 return $this->faculty->faculty;
             }
         }
+        return false;
     }
 
     public function schoolIDImage()
@@ -92,12 +94,14 @@ class User extends Authenticatable
 
     public function avatar()
     {
-
-        $avatar = 'images/'.$this->userInfo()->gender.'.jpg';
-        if(!is_null($this->avatar)){
-            $avatar = 'images/user/avatar/'.$this->avatar;
+        if($this->userInfo()!=false){
+            $avatar = 'images/'.$this->userInfo()->gender.'.jpg';
+            if(!is_null($this->avatar)){
+                $avatar = 'images/user/avatar/'.$this->avatar;
+            }
+            return $avatar;
         }
-        return $avatar;
+        return 'images/no-image.png';
     }
 
 }

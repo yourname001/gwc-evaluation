@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\User;
+use Auth;
 
 class UserFaculty extends Model
 {
@@ -17,7 +19,12 @@ class UserFaculty extends Model
     ];
 
     public function user(){
-        return $this->belongsTo('App\Models\User', 'user_id');
+        /* if(Auth::user()->hasrole('System Administrator')){
+            return $this->belongsTo('App\Models\User', 'user_id')->withTrashed();
+        }else{
+            return $this->belongsTo('App\Models\User', 'user_id');
+        } */
+        return $this->belongsTo('App\Models\User', 'user_id')->withTrashed();
     }
 
     public function faculty(){

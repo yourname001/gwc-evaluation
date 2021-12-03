@@ -7,7 +7,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">{{ $user->username }} | {{ $user->userInfo()->fullname('') }}</h1>
+                <h1 class="m-0 text-dark">{{ $user->username }} | {!! $user->userInfo()==false ? "" : $user->userInfo()->fullname('') !!}</h1>
             </div>
             <div class="col-md-6 text-right">
                 @if($user->is_verified == 1)
@@ -98,42 +98,42 @@
             <div class="col-md-3">
                 <legend>
                     User Info
-                    @if($user->userInfo()->trashed())
+                    @if($user->userInfo()==false || $user->userInfo()->trashed())
                     <span class="badge badge-danger">Data DELETED</span>
                     @endif
                 </legend>
                 @isset($user->student->id)
                     <label class="mb-0">Student ID:</label>
-                    {{ $user_info->student_id }}
+                    {{ $user_info==false ? "" : $user_info->student_id }}
                     <br>
                     <label class="mb-0">Year Level:</label>
-                    {{ $user_info->year_level }}
+                    {{ $user_info==false ? "" : $user_info->year_level }}
                     <br>
                 @else
                     <label class="mb-0">Faculty ID:</label>
-                    {{ $user_info->faculty_id }}
+                    {{ $user_info==false ? "" : $user_info->faculty_id }}
                     <br>
                 @endisset
                 <label class="mb-0">First Name:</label>
-                {{ $user_info->first_name }}
+                {{ $user_info==false ? "" : $user_info->first_name }}
                 <br>
                 <label class="mb-0">Middle Name:</label>
-                {{ $user_info->middle_name }}
+                {{ $user_info==false ? "" : $user_info->middle_name }}
                 <br>
                 <label class="mb-0">Last Name:</label>
-                {{ $user_info->last_name }}
+                {{ $user_info==false ? "" : $user_info->last_name }}
                 <br>
                 <label class="mb-0">Suffix:</label>
-                {{ $user_info->suffix }}
+                {{ $user_info==false ? "" : $user_info->suffix }}
                 <br>
                 <label class="mb-0">Gender:</label>
-                {{ $user_info->gender }}
+                {{ $user_info==false ? "" : $user_info->gender }}
                 <br>
                 <label class="mb-0">Contact #:</label>
-                {{ $user_info->contact_number }}
+                {{ $user_info==false ? "" : $user_info->contact_number }}
                 <br>
                 <label class="mb-0">Address #:</label>
-                {{ $user_info->address }}
+                {{ $user_info==false ? "" : $user_info->address }}
             </div>
         </div>
     </div>

@@ -110,9 +110,9 @@ class StudentController extends Controller
         
         if($request->get('add_user_account')){
             $request->validate([
-                'username' => ['required', 'string', 'max:255', 'unique:users,username'],
+                // 'username' => ['required', 'string', 'max:255', 'unique:users,username'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'password' => ['required', 'string', 'min:6', 'confirmed'],
+                // 'password' => ['required', 'string', 'min:6', 'confirmed'],
             ]);
 
             $password = base64_encode(time());
@@ -211,7 +211,7 @@ class StudentController extends Controller
 		}else{
 			$student->delete();
 		}
-		return back()->with('alert-danger','Deleted');
+		return redirect()->route('students.index')->with('alert-danger','Deleted');
 		// return redirect()->route('users.index')->with('alert-danger','User successfully deleted');
 	}
 
@@ -219,7 +219,7 @@ class StudentController extends Controller
 	{
 		$student = Student::withTrashed()->find($student);
 		$student->restore();
-		return back()->with('alert-success','Restored');
+		return redirect()->route('students.index')->with('alert-success','Restored');
 		// return redirect()->route('users.index')->with('alert-success','User successfully restored');
     }
     

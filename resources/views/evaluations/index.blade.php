@@ -55,8 +55,8 @@
                                     <ul>
                                         @forelse($evaluation->evaluationClasses as $class)
                                         <li>
-                                            {{ $class->class->course->course_code }} -
-                                            {{ $class->class->faculty->getFacultyName() }}@if(!$loop->last), @endif
+                                            {{ $class->class->course->course_code ?? "" }} -
+                                            {!! $class->class->faculty->fullname('') !!}@if(!$loop->last), @endif
                                         </li>
                                         @empty
                                         <li>

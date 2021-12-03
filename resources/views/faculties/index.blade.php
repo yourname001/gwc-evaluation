@@ -48,11 +48,15 @@
                                 @endrole
                                 <td>
                                     @isset ($faculty->user)
-                                    @if($faculty->user->user->is_verified == 1)
-                                        <span class="badge badge-success">Verified</span>
-                                    @else
-                                        <span class="badge badge-warning">Under Validation</span>
-                                    @endif
+                                        @if($faculty->user->user->trashed())
+                                        <span class="badge badge-danger">User data DELETED</span>
+                                        @else
+                                            @if($faculty->user->user->is_verified == 1)
+                                                <span class="badge badge-success">Verified</span>
+                                            @else
+                                                <span class="badge badge-warning">Under Validation</span>
+                                            @endif
+                                        @endif
                                     @else
                                         <span class="text-danger">N/A</span>
                                     @endif
