@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
 			'first_name' => "Kyouma",
 			'middle_name' => "Asd",
 			'last_name' => "hououin",
-			'gender' => "Male",
+			'gender' => "male",
 			'contact_number' => "09123456001",
         ]);
 
@@ -30,7 +30,7 @@ class UsersTableSeeder extends Seeder
 			'first_name' => "John Michael",
 			'middle_name' => "D",
 			'last_name' => "Fernandez",
-			'gender' => "Male",
+			'gender' => "male",
 			'contact_number' => "09123456789",
         ]);
 
