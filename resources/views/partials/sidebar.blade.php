@@ -17,7 +17,7 @@
                     @elseif (Auth::user()->faculty)
                         {{ Auth::user()->faculty->faculty->first_name }}
                     @endif
-                    ({{ Auth::user()->role->role->name }})
+                    {{-- ({{ Auth::user()->role->role->name }}) --}}
                 </a>
             </div>
         </div>

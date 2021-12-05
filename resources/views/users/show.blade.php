@@ -15,7 +15,16 @@
                 @else
                 <a href="{{ route('users.activate', $user->id) }}" class="btn btn-success"><i class="fa fa-check"></i> Activate</a>
                 @endif
-                <a href="javascript:void(0)" data-toggle="modal-ajax" data-href="{{ route('users.edit', $user->id) }}" data-target="#editUser" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
+                @if ($user->trashed())
+                    <a class="btn btn-default text-success" href="javascript:void(0)" onclick="restoreFromTable(this)" data-href="{{ route('users.restore', $user->id) }}"><i class="fad fa-download"></i> Restore</a>
+                @else
+                    @can('users.destroy')
+                    <a class="btn btn-default text-danger" href="javascript:void(0)" onclick="deleteFromTable(this)" data-href="{{ route('users.destroy', $user->id) }}"><i class="fad fa-trash-alt"></i> Delete</a>
+                    @endcan
+                @endif
+                @can('users.edit')
+                    <a class="btn btn-default text-primary" href="javascript:void(0)" data-toggle="modal-ajax" data-href="{{ route('users.edit', $user->id) }}" data-target="#editUser"><i class="fad fa-edit"></i> Edit</a>
+                @endcan
                 <a href="{{ route('users.index') }}" class="btn btn-default"><i class="fa fa-arrow-left"></i> Back</a>
             </div>
         </div>

@@ -22,12 +22,14 @@
                 </div>
             </div>
             <div class="modal-footer">
+                @can('questions.edit')
                 @if($question->is_active == 1)
-                <a href="{{ route('questions.set_inactive', $question->id) }}" class="btn btn-warning"><i class="fa fa-times-circle"></i>Set Inactive</a>
+                <a href="{{ route('questions.set_inactive', $question->id) }}" class="btn btn-default text-danger"><i class="fad fa-times-circle"></i>Set Inactive</a>
                 @else
-                <a href="{{ route('questions.set_active', $question->id) }}" class="btn btn-success"><i class="fa fa-check-circle"></i>Set Active</a>
+                <a href="{{ route('questions.set_active', $question->id) }}" class="btn btn-default text-success"><i class="fa fa-check-circle"></i>Set Active</a>
                 @endif
-                <a href="javascript:void(0)" class="btn btn-primary" data-toggle="modal-ajax" data-target="#editQuestion" data-href="{{ route('questions.edit',$question->id) }}"><i class="fad fa-edit"></i> Edit</a>
+                <a href="javascript:void(0)" class="btn btn-default text-primary" data-toggle="modal-ajax" data-target="#editQuestion" data-href="{{ route('questions.edit',$question->id) }}"><i class="fad fa-edit"></i> Edit</a>
+                @endcan
             </div>
         </div>
     </div>
