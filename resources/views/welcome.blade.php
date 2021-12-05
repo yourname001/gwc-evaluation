@@ -1,10 +1,17 @@
 @extends('layouts.adminlte')
+@section('style')
+    <style>
+        section.content{
+            padding: 0 !important
+        }
+    </style>
+@endsection
 @section('content')
 <section class="content">
     <div class="container-fluid text-center">
         <div class="row justify-content-center">
             <div class="col-md-8.5">
-                <img class="img-fluid" width="2500" src="{{ asset('images/bg.jpg') }}" alt="">
+                <img class="img-fluid" width="100%" src="{{ asset('images/homepage-banner.jpg') }}" alt="">
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <h2>Vision</h2>
