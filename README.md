@@ -3,19 +3,19 @@
 <p>Installation on Windows with XAMPP:</p>
 
 - Open windows powershell or windows terminal.
-- Execute this on shell/terminal: <code>cd C:/xampp/htdocs</code>
-- Execute this on shell/terminal: <code>git clone https://github.com/yourname001/gwc-evaluation.git</code>
-- Execute this on shell/terminal: <code>cd gwc-evaluation</code>
-- Execute this on shell/terminal: <code>composer install</code>
-- Execute this on shell/terminal: <code>cp .env.example .env</code>
+- Execute this on shell/terminal: ``` cd C:/xampp/htdocs ```
+- Execute this on shell/terminal: ``` git clone https://github.com/yourname001/gwc-evaluation.git ```
+- Execute this on shell/terminal: ``` cd gwc-evaluation ```
+- Execute this on shell/terminal: ``` composer install ```
+- Execute this on shell/terminal: ``` cp .env.example .env ```
 - Create database on http://localhost/phpmyadmin
-  - Database Name: <code>gwc_evaluation</code>
-  - Collation: <code>utf8mb4_unicode_ci</code>
-- Execute this on shell/terminal: <code>php artisan key:generate</code>
-- Execute this on shell/terminal: <code>php artisan config:cache</code>
-- Execute this on shell/terminal: <code>php artisan artisan install</code>
-- Execute this on shell/terminal: <code>php artisan config:cache</code>
-- Open <code>C:/xampp/apache/conf/extra/httpd-vhost.conf</code> and add these:
+  - Database Name: ``` gwc_evaluation ```
+  - Collation: ``` utf8mb4_unicode_ci ```
+- Execute this on shell/terminal: ``` php artisan key:generate ```
+- Execute this on shell/terminal: ``` php artisan config:cache ```
+- Execute this on shell/terminal: ``` php artisan artisan install ```
+- Execute this on shell/terminal: ``` php artisan config:cache ```
+- Open ``` C:/xampp/apache/conf/extra/httpd-vhost.conf ``` and add these:
     ```
     <VirtualHost *:80>
         DocumentRoot "C:/xampp/htdocs/gwc-evaluation/public"
@@ -23,7 +23,7 @@
     </VirtualHost>
     ```
     and save.
-- Launch notepad as administrator and open <code>C:/Windows/System32/drivers/etc/hosts</code> file and add these:
+- Launch notepad as administrator and open ``` C:/Windows/System32/drivers/etc/hosts ``` file and add these:
     ```
     127.0.0.1   gwc-evaluation.me
     ```
