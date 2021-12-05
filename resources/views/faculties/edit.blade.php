@@ -25,19 +25,19 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Faculty ID:</label><br>
+                                <label>Faculty ID: <strong class="text-danger">*</strong></label><br>
                                 <input class="form-control" type="text" name="faculty_id" required value="{{ $faculty->faculty_id }}">
                             </div>
                             <div class="form-group">
-                                <label>First Name:</label><br>
+                                <label>First Name: <strong class="text-danger">*</strong></label><br>
                                 <input class="form-control" type="text" name="first_name" value="{{ $faculty->first_name }}" required>
                             </div>
                             <div class="form-group">
                                 <label>Middle Name:</label><br>
-                                <input class="form-control" type="text" name="middle_name" value="{{ $faculty->middle_name }}" required>
+                                <input class="form-control" type="text" name="middle_name" value="{{ $faculty->middle_name }}">
                             </div>
                             <div class="form-group">
-                                <label>Last Name:</label><br>
+                                <label>Last Name: <strong class="text-danger">*</strong></label><br>
                                 <input class="form-control" type="text" name="last_name" value="{{ $faculty->last_name }}" required>
                             </div>
                             <div class="form-group">
@@ -45,17 +45,17 @@
                                 <input class="form-control" type="text" name="suffix" value="{{ $faculty->suffix }}">
                             </div>
                             <div class="form-group">
-                                <label>Gender:</label><br>
+                                <label>Gender: <strong class="text-danger">*</strong></label><br>
                                 <div class="form-row">
                                     <div class="radio col-md-4">
                                         <div class="custom-control custom-radio">
-                                            <input required type="radio" class="custom-control-input" name="gender" value="Male" id="male" @if($faculty->gender == 'Male') checked @endif>
+                                            <input required type="radio" class="custom-control-input" name="gender" value="male" id="male" @if($faculty->gender == 'Male') checked @endif>
                                             <label class="custom-control-label" for="male">Male</label>
                                         </div>
                                     </div>
                                     <div class="radio col-md-4">
                                         <div class="custom-control custom-radio">
-                                            <input required type="radio" class="custom-control-input" name="gender" value="Female" id="female" @if($faculty->gender == 'Female') checked @endif>
+                                            <input required type="radio" class="custom-control-input" name="gender" value="female" id="female" @if($faculty->gender == 'Female') checked @endif>
                                             <label class="custom-control-label" for="female">Female</label>
                                         </div>
                                     </div>

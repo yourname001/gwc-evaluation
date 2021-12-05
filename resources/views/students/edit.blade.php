@@ -22,15 +22,15 @@
                                 <input type="number" class="form-control" name="year_level" required value="{{ $student->year_level }}">
                             </div>
                             <div class="form-group">
-                                <label>First Name:</label><br>
+                                <label>First Name: <strong class="text-danger">*</strong></label><br>
                                 <input class="form-control" type="text" name="first_name" value="{{ $student->first_name }}" required>
                             </div>
                             <div class="form-group">
                                 <label>Middle Name:</label><br>
-                                <input class="form-control" type="text" name="middle_name" value="{{ $student->middle_name }}" required>
+                                <input class="form-control" type="text" name="middle_name" value="{{ $student->middle_name }}">
                             </div>
                             <div class="form-group">
-                                <label>Last Name:</label><br>
+                                <label>Last Name: <strong class="text-danger">*</strong></label><br>
                                 <input class="form-control" type="text" name="last_name" value="{{ $student->last_name }}" required>
                             </div>
                             <div class="form-group">
@@ -38,7 +38,7 @@
                                 <input class="form-control" type="text" name="suffix" value="{{ $student->suffix }}">
                             </div>
                             <div class="form-group">
-                                <label>Gender:</label><br>
+                                <label>Gender: <strong class="text-danger">*</strong></label><br>
                                 <div class="form-row">
                                     <div class="radio col-md-4">
                                         <div class="custom-control custom-radio">

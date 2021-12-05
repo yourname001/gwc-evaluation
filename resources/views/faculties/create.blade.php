@@ -24,19 +24,19 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Faculty ID:</label><br>
+                                <label>Faculty ID: <strong class="text-danger">*</strong></label><br>
                                 <input class="form-control" type="text" name="faculty_id" required>
                             </div>
                             <div class="form-group">
-                                <label>First Name:</label><br>
+                                <label>First Name: <strong class="text-danger">*</strong></label><br>
                                 <input class="form-control" type="text" name="first_name" required>
                             </div>
                             <div class="form-group">
                                 <label>Middle Name:</label><br>
-                                <input class="form-control" type="text" name="middle_name" required>
+                                <input class="form-control" type="text" name="middle_name">
                             </div>
                             <div class="form-group">
-                                <label>Last Name:</label><br>
+                                <label>Last Name: <strong class="text-danger">*</strong></label><br>
                                 <input class="form-control" type="text" name="last_name" required>
                             </div>
                             <div class="form-group">
@@ -44,17 +44,17 @@
                                 <input class="form-control" type="text" name="suffix">
                             </div>
                             <div class="form-group">
-                                <label>Gender:</label><br>
+                                <label>Gender: <strong class="text-danger">*</strong></label><br>
                                 <div class="form-row">
                                     <div class="radio col-md-4">
                                         <div class="custom-control custom-radio">
-                                            <input required type="radio" class="custom-control-input" name="gender" value="Male" id="male">
+                                            <input required type="radio" class="custom-control-input" name="gender" value="male" id="male">
                                             <label class="custom-control-label" for="male">Male</label>
                                         </div>
                                     </div>
                                     <div class="radio col-md-4">
                                         <div class="custom-control custom-radio">
-                                            <input required type="radio" class="custom-control-input" name="gender" value="Female" id="female">
+                                            <input required type="radio" class="custom-control-input" name="gender" value="female" id="female">
                                             <label class="custom-control-label" for="female">Female</label>
                                         </div>
                                     </div>
@@ -80,7 +80,7 @@
                             </div>
                             <div id="userCredentials">
                                 <div class="form-group">
-                                    <label>Email:</label><br>
+                                    <label>Email: <strong class="text-danger">*</strong></label><br>
                                     <input class="form-control" type="email" name="email" required>
                                 </div>
                             </div>

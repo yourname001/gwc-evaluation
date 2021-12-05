@@ -17,10 +17,10 @@ class UsersTableSeeder extends Seeder
         $system_admin_faculty = Faculty::create([
             'faculty_id' => 1234567001,
             'department_id' => 3,
-			'first_name' => "Kyouma",
-			'middle_name' => "Asd",
-			'last_name' => "hououin",
-			'gender' => "male",
+			'first_name' => "Resheal",
+			'middle_name' => "Manaloto",
+			'last_name' => "Pasagoy",
+			'gender' => "female",
 			'contact_number' => "09123456001",
         ]);
 
@@ -28,7 +28,7 @@ class UsersTableSeeder extends Seeder
             'faculty_id' => 1234567890,
             'department_id' => 3,
 			'first_name' => "John Michael",
-			'middle_name' => "D",
+			'middle_name' => "",
 			'last_name' => "Fernandez",
 			'gender' => "male",
 			'contact_number' => "09123456789",
@@ -37,7 +37,7 @@ class UsersTableSeeder extends Seeder
         $system_admin_user = User::create([
             'is_verified' => 1,
             'username' => 'master',
-            'email' => 'hououinkyouma.000001@gmail.com',
+            'email' => 'rerepasagoy@gmail.com',
             'password' => bcrypt('admin')
         ]);
 

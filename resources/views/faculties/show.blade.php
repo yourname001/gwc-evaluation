@@ -109,7 +109,7 @@
                         <input type="hidden" name="username" value="{{ $faculty->faculty_id }}">
                         <div id="userCredentials">
                             <div class="form-group">
-                                <label>Email:</label><br>
+                                <label>Email: <strong class="text-danger">*</strong></label><br>
                                 <input class="form-control" type="email" name="email" required>
                             </div>
                             <button class="btn btn-default text-success" type="submit"><i class="fas fa-save"></i> Save</button>
