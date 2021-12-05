@@ -49,13 +49,13 @@
                                 <div class="form-row">
                                     <div class="radio col-md-4">
                                         <div class="custom-control custom-radio">
-                                            <input required type="radio" class="custom-control-input" name="gender" value="male" id="male" @if($faculty->gender == 'Male') checked @endif>
+                                            <input required type="radio" class="custom-control-input" name="gender" value="male" id="male" @if($faculty->gender == 'male') checked @endif>
                                             <label class="custom-control-label" for="male">Male</label>
                                         </div>
                                     </div>
                                     <div class="radio col-md-4">
                                         <div class="custom-control custom-radio">
-                                            <input required type="radio" class="custom-control-input" name="gender" value="female" id="female" @if($faculty->gender == 'Female') checked @endif>
+                                            <input required type="radio" class="custom-control-input" name="gender" value="female" id="female" @if($faculty->gender == 'female') checked @endif>
                                             <label class="custom-control-label" for="female">Female</label>
                                         </div>
                                     </div>
