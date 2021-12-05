@@ -121,7 +121,7 @@ class Faculty extends Model
                     }
                     break;
                 case 'M':
-                    if(!is_null($this->middle_name)){
+                    if(!is_null($this->middle_name) || $this->middle_name==''){
                         if($i == 1){
                             $name .= ' '.$this->middle_name[0].'. ';
                         }else{
