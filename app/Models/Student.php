@@ -61,7 +61,7 @@ class Student extends Model
 		$name = "N/A";
 		if($this->id){
 			$name = $this->first_name.' '.
-				(is_null($this->middle_name) ? '' : $this->middle_name[0].'. ').
+				((is_null($this->middle_name) || $this->middle_name=='')  ? '' : $this->middle_name[0].'. ').
 				$this->last_name.
 				' '.$this->suffix;
 		}

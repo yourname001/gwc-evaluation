@@ -144,7 +144,7 @@ class Faculty extends Model
                 
                 default:
                 $name = $this->first_name.' '.
-                    (is_null($this->middle_name) ? '' : $this->middle_name[0].'. ').
+                ((is_null($this->middle_name) || $this->middle_name=='')  ? '' : $this->middle_name[0].'. ').
                     $this->last_name.
 				    ' '.$this->suffix;
                     break;
