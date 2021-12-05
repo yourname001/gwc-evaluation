@@ -8,8 +8,8 @@
 </head>
 <body>
     <p>
-        This is to confirm that your account has been activated.                                      
-        You may now <a href="{{ config('app.url') }}">login</a> to Online Faculty Evaluation Management of Golden West Colleges using the information below:
+        This is to confirm that your account has been activated. You may now login to <a href="{{ config('app.url') }}/login">Online Faculty Evaluation Management</a> of Golden West Colleges using the information below:                                  
+        {{-- You may now <a href="{{ config('app.url') }}">login</a> to Online Faculty Evaluation Management of Golden West Colleges using the information below: --}}
     </p>
     <p>
         <ul style="list-style: none">
@@ -22,6 +22,9 @@
                 {{ $user->temp_password }}
             </li>
         </ul>
+    </p>
+    <p>
+        <i>Temporary password has been made, upon login it's your responsibility to change your account password for you to secure your account.</i>
     </p>
     <p>
         PLEASE PROTECT YOUR ACCOUNT INFORMATION. You assume full responsibility for maintaining the confidentiality of your Username and Password.

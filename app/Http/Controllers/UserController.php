@@ -253,7 +253,7 @@ class UserController extends Controller
             'temp_password' => $password,
         ]);
         Mail::to($user->email)->send(new AccountActivatedMail($user));
-        return redirect()->route('users.index')->with('alert-success', 'saved');
+        return redirect()->route('users.show', $user->id)->with('alert-success', 'saved');
     }
 
     public function deactivate(User $user)
@@ -266,7 +266,7 @@ class UserController extends Controller
             'password' => Hash::make($password),
             'temp_password' => null,
         ]);
-        return redirect()->route('users.index')->with('alert-success', 'saved');
+        return redirect()->route('users.show', $user->id)->with('alert-success', 'saved');
     }
 
     public function accountSettings(User $user)

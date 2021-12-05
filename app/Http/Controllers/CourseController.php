@@ -76,6 +76,8 @@ class CourseController extends Controller
             return response()->json([
                 'modal_content' => view('courses.show', compact('course'))->render()
             ]);
+        }else{
+            return view('courses.show', compact('course'));
         }
     }
 

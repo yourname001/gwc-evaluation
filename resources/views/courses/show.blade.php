@@ -60,17 +60,17 @@
             </div>
             <div class="modal-footer">
                 <div class="col">
-					@if ($election_show->trashed())
+					@if ($course->trashed())
                 		@can('courses.restore')
-					    <a class="btn btn-default text-success" href="javascript:void(0)" onclick="restoreFromTable(this)" data-href="{{ route('courses.restore', $election_show->id) }}"><i class="fad fa-download"></i> Restore</a>
+					    <a class="btn btn-default text-success" href="javascript:void(0)" onclick="restoreFromTable(this)" data-href="{{ route('courses.restore', $course->id) }}"><i class="fad fa-download"></i> Restore</a>
 						@endcan
 					@else
 						@can('courses.destroy')
-					    <a class="btn btn-default text-danger" href="javascript:void(0)" onclick="deleteFromTable(this)" data-href="{{ route('courses.destroy', $election_show->id) }}"><i class="fad fa-trash-alt"></i> Delete</a>
+					    <a class="btn btn-default text-danger" href="javascript:void(0)" onclick="deleteFromTable(this)" data-href="{{ route('courses.destroy', $course->id) }}"><i class="fad fa-trash-alt"></i> Delete</a>
 						@endcan
 					@endif
 					@can('courses.edit')
-					   <a class="btn btn-default text-primary" href="javascript:void(0)" data-toggle="modal-ajax" data-href="{{ route('courses.edit', $election_show->id) }}" data-target="#editCourse"><i class="fad fa-edit"></i> Edit</a>
+					   <a class="btn btn-default text-primary" href="javascript:void(0)" data-toggle="modal-ajax" data-href="{{ route('courses.edit', $course->id) }}" data-target="#editCourse"><i class="fad fa-edit"></i> Edit</a>
                     @endcan
 				</div>
 				<div class="col text-right">

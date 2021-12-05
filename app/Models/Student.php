@@ -95,7 +95,7 @@ class Student extends Model
                     }
                     break;
                 case 'M':
-                    if(!is_null($this->middle_name)){
+                    if(!is_null($this->middle_name) || $this->middle_name==''){
                         if($i == 1){
                             $name .= ' '.$this->middle_name.' ';
                         }elseif($i == 2){
@@ -120,7 +120,7 @@ class Student extends Model
                 
                 default:
                 $name = $this->first_name.' '.
-                    (is_null($this->middle_name) ? '' : $this->middle_name[0].'. ').
+                    ((is_null($this->middle_name) || $this->middle_name=='') ? '' : $this->middle_name[0].'. ').
                     $this->last_name.
 				    (is_null($this->suffix) ? '' : ', '.$this->suffix);
                     break;
