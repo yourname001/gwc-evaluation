@@ -34,6 +34,6 @@ class FacultyEvaluationResultMail extends Mailable
     {
         return $this->subject('Evaluation Complete')
         ->view('mail.faculty_evaluation_result')
-        ->attach(public_path().'/'.$this->filePath);
+        ->attach(storage_path('app/'.$this->filePath));
     }
 }

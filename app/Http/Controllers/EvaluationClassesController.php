@@ -204,8 +204,8 @@ class EvaluationClassesController extends Controller
         $evaluationClass = $evaluationClasses;
         $faculty = $evaluationClass->class->faculty;
         $fileName = $faculty->last_name.', '.$faculty->first_name.' ('.$evaluationClass->class->course->course_code.') '.date('Y-m-d-H-i-s').'.xlsx';
-        Excel::store(new EvaluationClassExport($evaluationClasses->id), $fileName, 'excel');
-        $filePath = 'excel-exports/'.$fileName;
+        Excel::store(new EvaluationClassExport($evaluationClasses->id), $fileName);
+        $filePath = $fileName;
         Mail::to($evaluationClasses->class->faculty->user->user->email)->send(new FacultyEvaluationResultMail($evaluationClasses, $filePath));
         return redirect()->route('evaluation_classes.show', $evaluationClasses->id);
     }

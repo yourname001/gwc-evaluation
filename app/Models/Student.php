@@ -119,11 +119,11 @@ class Student extends Model
                     break; */
                 
                 default:
-                $name = $this->first_name.' '.
-                    ((is_null($this->middle_name) || $this->middle_name=='') ? '' : $this->middle_name[0].'. ').
-                    $this->last_name.
-				    (is_null($this->suffix) ? '' : ', '.$this->suffix);
-                    break;
+                    $name = $this->first_name.' '.
+                        ((is_null($this->middle_name) || $this->middle_name=='') ? '' : $this->middle_name[0].'. ').
+                        $this->last_name.
+                        (is_null($this->suffix) ? '' : ', '.$this->suffix);
+                        break;
             }
         }
 		

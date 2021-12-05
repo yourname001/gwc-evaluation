@@ -26,7 +26,7 @@
                             @endrole
                             <th>Account Status</th>
                             <th>Student ID</th>
-                            <th>Year/Section</th>
+                            <th>Year</th>
                             <th>First Name</th>
                             <th>Middle Name</th>
                             <th>Last Name</th>
