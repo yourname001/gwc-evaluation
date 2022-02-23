@@ -19,6 +19,7 @@ Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 Route::get('registration_complete', 'StudentRegistrationController@registrationComplete')->name('registration_complete');
+Route::get('student_registration', 'StudentRegistrationController@index')->name('student_registration.index');
 
 Route::get('/home', function(){
 	return redirect()->route('evaluations.index');
@@ -51,6 +52,8 @@ Route::group(array('middleware'=>['auth']), function() {
 		'as' => 'users.account_settings',
 		'uses' => 'UserController@accountSettings'
 	]);
+	Route::get('login-logs', 'UserController@loginInfo')->name('users.login_info');
+	
 	Route::put('change_avatar/{user}', 'UserController@changeAvatar')->name('users.change_avatar');
 	Route::put('change_password/{user}', 'UserController@changePassword')->name('users.change_password');
 	Route::get('user_activate/{user}', 'UserController@activate')->name('users.activate');
@@ -98,6 +101,7 @@ Route::group(array('middleware'=>['auth']), function() {
 	 */
 	Route::resource('students', 'StudentController');
 	Route::put('students_update_avatar/{student}', 'StudentController@changeAvatar')->name('students.change_avatar');
+	Route::put('students_update_status/{student}', 'StudentController@upodateStatus')->name('students.update_status');
 	// restore
 	Route::post('students_restore/{position}', [
 		'as' => 'students.restore',
@@ -165,8 +169,37 @@ Route::group(array('middleware'=>['auth']), function() {
 	Route::resource('courses', 'CourseController');
 	// restore
 	Route::post('courses_restore/{course}', [
-		'as' => 'courses.restocoursesre',
+		'as' => 'courses.restore',
 		'uses' => 'CourseController@restore'
+	]);
+
+	/**
+	 * Subjects
+	 */
+	Route::resource('subjects', 'SubjectController');
+	// restore
+	Route::post('subjects_restore/{subject}', [
+		'as' => 'subjects.restore',
+		'uses' => 'SubjectController@restore'
+	]);
+
+	/**
+	 * Source Subjects
+	 */
+	Route::resource('course_subjects', 'CourseSubjectController');
+	// restore
+	Route::post('course_subjects_restore/{course_subject}', [
+		'as' => 'course_subjects.restore',
+		'uses' => 'CourseSubjectController@restore'
+	]);
+
+	/**	
+	 * School Year Semester
+	 */
+	Route::resource('school_year_semesters', 'SchoolYearSemesterController');
+	Route::post('school_year_semesters_restore/{school_year_semester}', [
+		'as' => 'school_year_semesters.restore',
+		'uses' => 'SchoolYearSemesterController@restore'
 	]);
 
 	/**

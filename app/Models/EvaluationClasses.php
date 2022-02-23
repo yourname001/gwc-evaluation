@@ -41,6 +41,11 @@ class EvaluationClasses extends Model
         return $this->hasMany('App\Models\EvaluationStudent', 'evaluation_class_id');
     }
 
+    public function evaluationStudentRatings()
+    {
+        return $this->hasMany('App\Models\EvaluationStudent', 'evaluation_class_id')->orderBy('rating', 'ASC');
+    }
+
     public function evaluationStudentResponses()
     {
         $studentResponses = EvaluationStudentResponse::wherein('evaluation_student_id', EvaluationStudent::where('evaluation_class_id', $this->id)->get('id'))->get();

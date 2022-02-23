@@ -33,6 +33,7 @@ class User extends Authenticatable
         'password',
         'temp_password',
     ];
+    
 
     /**
      * The attributes that should be hidden for arrays.
@@ -51,6 +52,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function loginInfos()
+    {
+        return $this->hasMany('App\Models\LoginInfo', 'user_id');
+    }
 
     public function role()
 	{

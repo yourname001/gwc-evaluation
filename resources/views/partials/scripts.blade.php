@@ -147,6 +147,12 @@
                     placeholder: "Select",
                     allowClear: true
                 });
+                $('.select2-no-search').select2({
+                    theme: "bootstrap4",
+                    placeholder: "Select",
+                    allowClear: true,
+                    minimumResultsForSearch: Infinity
+                });
                 $('.datetimepicker').datetimepicker();
                 $('#oldInput').find('input').each(function(){
                     var name = $(this).attr('name').replace('old_', '');
@@ -350,6 +356,9 @@
 <script type="application/javascript">
     $(document).ready( function () {
         $('#datatable').DataTable();
+    });
+    $(document).ready( function () {
+        $('.datatable').DataTable();
     });
 </script>
 

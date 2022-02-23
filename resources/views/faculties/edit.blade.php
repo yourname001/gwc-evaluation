@@ -26,23 +26,23 @@
                             </div>
                             <div class="form-group">
                                 <label>Faculty ID: <strong class="text-danger">*</strong></label><br>
-                                <input class="form-control" type="text" name="faculty_id" required value="{{ $faculty->faculty_id }}">
+                                <input class="form-control" type="text" oninput="this.value = this.value.toUpperCase()" name="faculty_id" required value="{{ $faculty->faculty_id }}">
                             </div>
                             <div class="form-group">
                                 <label>First Name: <strong class="text-danger">*</strong></label><br>
-                                <input class="form-control" type="text" name="first_name" value="{{ $faculty->first_name }}" required>
+                                <input class="form-control" type="text" oninput="this.value = this.value.toUpperCase()" name="first_name" value="{{ $faculty->first_name }}" required>
                             </div>
                             <div class="form-group">
                                 <label>Middle Name:</label><br>
-                                <input class="form-control" type="text" name="middle_name" value="{{ $faculty->middle_name }}">
+                                <input class="form-control" type="text" oninput="this.value = this.value.toUpperCase()" name="middle_name" value="{{ $faculty->middle_name }}">
                             </div>
                             <div class="form-group">
                                 <label>Last Name: <strong class="text-danger">*</strong></label><br>
-                                <input class="form-control" type="text" name="last_name" value="{{ $faculty->last_name }}" required>
+                                <input class="form-control" type="text" oninput="this.value = this.value.toUpperCase()" name="last_name" value="{{ $faculty->last_name }}" required>
                             </div>
                             <div class="form-group">
                                 <label>Suffix:</label><br>
-                                <input class="form-control" type="text" name="suffix" value="{{ $faculty->suffix }}">
+                                <input class="form-control" type="text" oninput="this.value = this.value.toUpperCase()" name="suffix" value="{{ $faculty->suffix }}">
                             </div>
                             <div class="form-group">
                                 <label>Gender: <strong class="text-danger">*</strong></label><br>
@@ -61,14 +61,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label>Contact #:</label><br>
                                 <input class="form-control" type="text" name="contact_number" value="{{ $faculty->contact_number }}">
                             </div>
                             <div class="form-group">
                                 <label>Address:</label>
                                 <textarea class="form-control" name="address" rows="3">{{ $faculty->address }}</textarea>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

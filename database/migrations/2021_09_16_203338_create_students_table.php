@@ -16,6 +16,8 @@ class CreateStudentsTable extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('image')->nullable();
+            $table->enum('status', ['drop', 'activated', 'graduated'])->nullable();
+            $table->unsignedBigInteger('course_id')->nullable();
             $table->string('student_id')->unique();
             $table->string('year_level');
             $table->string('first_name');
@@ -27,6 +29,11 @@ class CreateStudentsTable extends Migration
             $table->text('address')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('course_id')->references('id')
+				->on('courses')
+				->onDelete('cascade')
+				->onUpdate('cascade');
         });
     }
 

@@ -14,13 +14,13 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Course:</label>
-                                <select class="form-control select2" name="course" required>
+                                <label>Subject:</label>
+                                <select class="form-control select2" name="subject" required>
                                     <option></option>
-                                    @foreach ($courses as $course)
-                                        <option value="{{ $course->id }}" @if($class->course_id == $course->id) selected @endif>
-                                            {{ $course->course_code }} - 
-                                            {{ $course->title }}
+                                    @foreach ($subjects as $subject)
+                                        <option value="{{ $subject->id }}" @if($class->subject_id == $subject->id) selected @endif>
+                                            {{ $subject->subject_code }} - 
+                                            {{ $subject->title }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -42,6 +42,7 @@
                                     <option></option>
                                     @foreach ($students as $student)
                                         <option value="{{ $student->id }}" @if(in_array($student->id, $classStudentIDs)) selected @endif>
+                                            {{ $student->student_id }} |
                                             {{ $student->fullname('') }}
                                         </option>
                                     @endforeach

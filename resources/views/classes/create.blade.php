@@ -13,13 +13,17 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Course:</label>
-                                <select class="form-control select2" name="course" required>
+                                <label>School Year & Semester:</label>
+                                S.Y.{{ $schoolYearSemester->school_year }} | {{ $schoolYearSemester->getSemester() }}
+                            </div>
+                            <div class="form-group">
+                                <label>Subject:</label>
+                                <select class="form-control select2" name="subject" required>
                                     <option></option>
-                                    @foreach ($courses as $course)
-                                        <option value="{{ $course->id }}">
-                                            {{ $course->course_code }} - 
-                                            {{ $course->title }}
+                                    @foreach ($subjects as $subject)
+                                        <option value="{{ $subject->id }}">
+                                            {{ $subject->subject_code }} - 
+                                            {{ $subject->title }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -41,7 +45,7 @@
                                     <option></option>
                                     @foreach ($students as $student)
                                         <option value="{{ $student->id }}">
-                                            {{ $student->fullname('') }}
+                                            {{ $student->student_id }} | {{ $student->fullname('') }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -52,7 +56,23 @@
                             </div>
                             {{-- <div class="form-group">
                                 <label>School Year:</label>
-                                <input class="form-control" type="text" name="school_year" required>
+                                <div class="row">
+                                    <div class="col">
+                                        <input class="form-control" name="school_year_1" type="number" min="{{ date('Y')-1 }}" required>
+                                    </div>
+                                    -
+                                    <div class="col">
+                                        <input class="form-control" name="school_year_2" type="number" max="{{ date('Y')+1 }}" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Semester:</label>
+                                <select name="semester" class="form-control" required>
+                                    <option value="1st">1st Semester</option>
+                                    <option value="2nd">2nd Semester</option>
+                                    <option value="3rd">3rd Semester</option>
+                                </select>
                             </div> --}}
                         </div>
                     </div>

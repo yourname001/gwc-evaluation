@@ -28,7 +28,18 @@
                         <div class="form-group row">
 							<label for="inputStudentID" class="col-sm-4 col-form-label">Student ID <strong class="text-danger">*</strong></label>
 							<div class="col-sm-8">
-								<input type="text" name="student_id" class="form-control" id="inputStudentID" placeholder="Student ID" value="{{ old('student_id') }}" required>
+								<input type="text" name="student_id" class="form-control" oninput="this.value = this.value.toUpperCase()" id="inputStudentID" placeholder="Student ID" value="{{ old('student_id') }}" required>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="selectCourse" class="col-sm-4 col-form-label">Course <strong class="text-danger">*</strong></label>
+							<div class="col-sm-8">
+								<select id="selectCourse" name="course" class="form-control select2" required>
+									<option></option>
+									@foreach ($courses as $course)
+										<option value="{{ $course->id }}">{{ $course->name }}</option>
+									@endforeach
+								</select>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -40,25 +51,25 @@
 						<div class="form-group row">
 							<label for="inputFirstName" class="col-sm-4 col-form-label">First Name <strong class="text-danger">*</strong></label>
 							<div class="col-sm-8">
-								<input type="text" name="first_name" class="form-control" id="inputFirstName" placeholder="First Name" value="{{ old('first_name') }}" required>
+								<input type="text" name="first_name" class="form-control" oninput="this.value = this.value.toUpperCase()" id="inputFirstName" placeholder="First Name" value="{{ old('first_name') }}" required>
 							</div>
                         </div>
 						<div class="form-group row">
 							<label for="inputMiddleName" class="col-sm-4 col-form-label">Middle Name</label>
 							<div class="col-sm-8">
-								<input type="text" name="middle_name" class="form-control" id="inputMiddleName" placeholder="Middle Name" value="{{ old('middle_name') }}">
+								<input type="text" name="middle_name" class="form-control" oninput="this.value = this.value.toUpperCase()" id="inputMiddleName" placeholder="Middle Name" value="{{ old('middle_name') }}">
 							</div>
                         </div>
 						<div class="form-group row">
 							<label for="inputLastName" class="col-sm-4 col-form-label">Last Name <strong class="text-danger">*</strong></label>
 							<div class="col-sm-8">
-								<input type="text" name="last_name" class="form-control" id="inputLastName" placeholder="Last Name" value="{{ old('last_name') }}" required>
+								<input type="text" name="last_name" class="form-control" oninput="this.value = this.value.toUpperCase()" id="inputLastName" placeholder="Last Name" value="{{ old('last_name') }}" required>
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="inputSuffix" class="col-sm-4 col-form-label">Suffix</label>
 							<div class="col-sm-8">
-								<input type="text" name="suffix" class="form-control" id="inputSuffix" placeholder="Suffix" value="{{ old('suffix') }}">
+								<input type="text" name="suffix" class="form-control" oninput="this.value = this.value.toUpperCase()" id="inputSuffix" placeholder="Suffix" value="{{ old('suffix') }}">
 							</div>
 						</div>
 						<div class="form-group row">

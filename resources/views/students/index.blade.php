@@ -18,66 +18,97 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <table id="datatable" class="table table-sm table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            @role('System Administrator')
-                            <th>ID</th>
-                            @endrole
-                            <th>Account Status</th>
-                            <th>Student ID</th>
-                            <th>Year</th>
-                            <th>First Name</th>
-                            <th>Middle Name</th>
-                            <th>Last Name</th>
-                            @role('System Administrator')
-                            <th class="text-center">Action</th>
-                            @endrole
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($students as $student)
-                        <tr @unlessrole('System Administrator') @can('students.show') data-toggle="tr-link" data-href="{{ route('students.show', $student->id) }}"  @endcan @else class="{{ $student->trashed() ? 'table-danger' : '' }}" @endunlessrole>
-                            @role('System Administrator')
-                            <td>{{ $student->id }}</td>
-                            @endrole
-                            <td>
-                                @isset ($student->user)
-                                    @if($student->user->user->trashed())
-                                        <span class="badge badge-danger">User data DELETED</span>
-                                    @else
-                                        @if($student->user->user->is_verified == 1)
-                                            <span class="badge badge-success">Verified</span>
-                                        @else
-                                            <span class="badge badge-warning">Under Validation</span>
-                                        @endif
-                                    @endif
-                                @else
-                                    <span class="text-danger">N/A</span>
-                                @endif
-                            </td>
-                            <td>{{ $student->student_id }}</td>
-                            <td>
-                                {{ $student->year_level }}
-                            </td>
-                            <td>{{ $student->first_name }}</td>
-                            <td>{{ $student->middle_name }}</td>
-                            <td>{{ $student->last_name }}</td>
-                            @role('System Administrator')
-                                <td class="text-center">
-                                    {{-- <a href="javascript:void(0)" data-toggle="modal-ajax" data-target="#editStudent" data-href="{{ route('students.edit',$student->id) }}"><i class="fad fa-edit fa-lg"></i></a> --}}
-                                    @if ($student->trashed())
-                                    <a class="text-success" href="javascript:void(0)" onclick="restoreFromTable(this)" data-href="{{ route('students.restore', $student->id) }}"><i class="fad fa-download fa-lg"></i></a>
-                                    @else
-                                        <a href="{{ route('students.show',$student->id) }}"><i class="fad fa-file fa-lg"></i></a>
-                                        <a class="text-danger" href="javascript:void(0)" onclick="deleteFromTable(this)" data-href="{{ route('students.destroy', $student->id) }}"><i class="fad fa-trash-alt fa-lg"></i></a>
-                                    @endif
-                                </td>
-                            @endrole
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                <div class="card card-primary card-outline card-tabs">
+                    <div class="card-header p-0 pt-1 border-bottom-0">
+                        <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
+                            @forelse ($studentsByYearLevel as $yearLevel => $courses)
+                                <li class="nav-item">
+                                    <a class="nav-link @if($loop->first) active @endif text-dark" id="year-{{ $yearLevel }}-tab" data-toggle="pill" href="#year-{{ $yearLevel }}" role="tab" aria-controls="year-{{ $yearLevel }}" @if($loop->first) aria-selected="true" @endif>
+                                        {{ App\Models\Student::getOrdinalOfYearLevel($yearLevel) }}
+                                    </a>
+                                </li>
+                            @empty
+                            @endforelse
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content" id="year-tabContent">
+                            @forelse ($studentsByYearLevel as $yearLevel => $courses)
+                                <div class="tab-pane fade @if($loop->first) show active @endif" id="year-{{ $yearLevel }}" role="tabpanel" aria-labelledby="year-{{ $yearLevel }}-tab">
+                                    @forelse ($courses->groupBy('course_id') as $courseID => $students)
+                                        @php
+                                            $course = App\Models\Course::find($courseID);
+                                        @endphp
+                                        <div class="col" id="accordion-{{ $course->id }}">
+                                            <div class="card card-info  card-outline">
+                                                <a class="d-block" data-toggle="collapse" href="#course-{{ $course->id }}-students">
+                                                    <div class="card-header d-flex p-0">
+                                                        <div class="col-md-6">
+                                                            <h4 class="card-title p-3 text-dark">
+                                                                {{ $course->name }}
+                                                            </h4>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <h6 class="p-3 text-dark text-right">
+                                                                ({{ $course->students->count() }} Students)
+                                                            </h6>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                <div id="course-{{ $course->id }}-students" class="collapse" data-parent="#accordion-{{ $course->id }}">
+                                                    <div class="card-body">
+                                                        <table class="table table-sm table-bordered table-hover datatable">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Course</th>
+                                                                    <th>Student ID</th>
+                                                                    <th>Year</th>
+                                                                    <th>First Name</th>
+                                                                    <th>Middle Name</th>
+                                                                    <th>Last Name</th>
+                                                                    @role('System Administrator')
+                                                                    <th class="text-center">Action</th>
+                                                                    @endrole
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach ($students as $student)
+                                                                <tr @unlessrole('System Administrator') @can('students.show') data-toggle="tr-link" data-href="{{ route('students.show', $student->id) }}"  @endcan @else class="{{ $student->trashed() ? 'table-danger' : '' }}" @endunlessrole>
+                                                                    <td>{{ $student->course->name ?? "" }}</td>
+                                                                    <td>{{ $student->student_id }}</td>
+                                                                    <td>
+                                                                        {{ $student->getYearLevel() }}
+                                                                    </td>
+                                                                    <td>{{ $student->first_name }}</td>
+                                                                    <td>{{ $student->middle_name }}</td>
+                                                                    <td>{{ $student->last_name }}</td>
+                                                                    @role('System Administrator')
+                                                                        <td class="text-center">
+                                                                            {{-- <a href="javascript:void(0)" data-toggle="modal-ajax" data-target="#editStudent" data-href="{{ route('students.edit',$student->id) }}"><i class="fad fa-edit fa-lg"></i></a> --}}
+                                                                            @if ($student->trashed())
+                                                                            <a class="text-success" href="javascript:void(0)" onclick="restoreFromTable(this)" data-href="{{ route('students.restore', $student->id) }}"><i class="fad fa-download fa-lg"></i></a>
+                                                                            @else
+                                                                                <a href="{{ route('students.show',$student->id) }}"><i class="fad fa-file fa-lg"></i></a>
+                                                                                <a class="text-danger" href="javascript:void(0)" onclick="deleteFromTable(this)" data-href="{{ route('students.destroy', $student->id) }}"><i class="fad fa-trash-alt fa-lg"></i></a>
+                                                                            @endif
+                                                                        </td>
+                                                                    @endrole
+                                                                </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @empty
+                                    @endforelse
+                                </div>
+                            @empty
+                            @endforelse
+                        </div>
+                    </div>
+                </div>
             </div>
             @role('System Administrator')
                 @if(config('app.env') == 'local')

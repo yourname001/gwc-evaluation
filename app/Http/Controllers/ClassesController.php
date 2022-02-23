@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Classes;
 use App\Models\ClassStudent;
-use App\Models\Course;
+use App\Models\Subject;
 use App\Models\Faculty;
 use App\Models\Student;
+use App\Models\SchoolYearSemester;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Auth;
 
 class ClassesController extends Controller
@@ -28,7 +30,12 @@ class ClassesController extends Controller
      */
     public function index()
     {
+        $now = Carbon::now();
         $classes = Classes::select('*');
+        $activeSemester = SchoolYearSemester::where('active', 1)->whereDate('end_date', '>', $now)->first();
+        if(Auth::user()->hasrole('System Administrator')){
+            $classes->withTrashed();
+        }
 
         if(isset(Auth::user()->student->id)){
             $data = [
@@ -43,7 +50,8 @@ class ClassesController extends Controller
                 ];
             }else{
                 $data = [
-                    'classes' => $classes->get()
+                    'classes' => $classes->get(),
+                    'activeSemester' => $activeSemester
                 ];
             }
     
@@ -60,7 +68,8 @@ class ClassesController extends Controller
     {
         if(request()->ajax()){
             $data = [
-                'courses' => Course::get(),
+                'schoolYearSemester' => SchoolYearSemester::where('active', 1)->first(),
+                'subjects' => Subject::get(),
                 'faculties' => Faculty::get(),
                 'students' => Student::get(),
             ];
@@ -81,14 +90,21 @@ class ClassesController extends Controller
         $request->validate([
             'faculty' => 'required',
             'students' => 'required',
+            /* 'school_year_1' => 'required',
+            'school_year_2' => 'required',
+            'semester' => 'required', */
         ]);
+
+        $activeSemester = SchoolYearSemester::where('active', 1)->first();
 
         $class = Classes::create([
             'is_active'=> true,
-            'course_id'=> $request->get('course'),
+            'school_year_semester_id'=> $activeSemester->id,
+            'subject_id'=> $request->get('subject'),
             'faculty_id'=> $request->get('faculty'),
             'section'=> $request->get('section'),
-            'school_year'=> $request->get('school_year'),
+            /* 'school_year'=> $request->get('school_year_1').'-'.$request->get('school_year_2'),
+            'semester'=> $request->get('semester'), */
             'schedule'=> $request->get('schedule'),
         ]);
 
@@ -127,7 +143,7 @@ class ClassesController extends Controller
     {
         if(request()->ajax()){
             $data = [
-                'courses' => Course::get(),
+                'subjects' => Subject::get(),
                 'faculties' => Faculty::get(),
                 'students' => Student::get(),
                 'class' => $classes,
@@ -154,10 +170,9 @@ class ClassesController extends Controller
         ]);
 
         $classes->update([
-            'course_id'=> $request->get('course'),
+            'subject_id'=> $request->get('subject'),
             'faculty_id'=> $request->get('faculty'),
             'section'=> $request->get('section'),
-            'school_year'=> $request->get('school_year'),
             'schedule'=> $request->get('schedule'),
         ]);
 

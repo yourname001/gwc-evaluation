@@ -20,16 +20,37 @@
 </div>
 <section class="content">
     <div class="container-fluid">
+        @if($evaluation->end_date->diffInDays(Carbon\Carbon::now()) <= 1)
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h5>
+                        <i class="icon fas fa-exclamation-triangle"></i>
+                        @if($evaluation->end_date->diffInHours(Carbon\Carbon::now()) < 24)
+                        {{ $evaluation->end_date->diffInHours(Carbon\Carbon::now()) }}
+                        Hours
+                        @elseif($evaluation->end_date->diffInDays(Carbon\Carbon::now()) == 1)
+                        {{ $evaluation->end_date->diffInDays(Carbon\Carbon::now()) }}
+                        Day
+                        @endif
+                        left before the evaluation will end.
+                    </h5>
+                    
+                </div>
+            </div>
+        </div>
+        @endif
         <div class="row">
             @foreach ($evaluation->evaluationClasses as $evaluationClass)
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-success">
                     <div class="inner">
                         <h3>
-                            {{ $evaluationClass->class->course->course_code }}
+                            {{ $evaluationClass->class->subject->subject_code }}
                         </h3>
                         <p>
-                            {{ $evaluationClass->class->course->title }}
+                            {{ $evaluationClass->class->subject->title }}
                             <br>
                             Section: {{ $evaluationClass->class->section }}
                             <br>

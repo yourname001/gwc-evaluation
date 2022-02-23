@@ -111,7 +111,7 @@
                     <span class="badge badge-danger">Data DELETED</span>
                     @endif
                 </legend>
-                @isset($user->student->id)
+                @if($user->role->role->name == 'Student')
                     <label class="mb-0">Student ID:</label>
                     {{ $user_info==false ? "" : $user_info->student_id }}
                     <br>
@@ -122,7 +122,7 @@
                     <label class="mb-0">Faculty ID:</label>
                     {{ $user_info==false ? "" : $user_info->faculty_id }}
                     <br>
-                @endisset
+                @endif
                 <label class="mb-0">First Name:</label>
                 {{ $user_info==false ? "" : $user_info->first_name }}
                 <br>
@@ -140,9 +140,6 @@
                 <br>
                 <label class="mb-0">Contact #:</label>
                 {{ $user_info==false ? "" : $user_info->contact_number }}
-                <br>
-                <label class="mb-0">Address #:</label>
-                {{ $user_info==false ? "" : $user_info->address }}
             </div>
         </div>
     </div>

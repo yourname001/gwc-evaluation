@@ -26,10 +26,10 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 @guest
                     <li class="nav-item">
-                        <a href="{{ route('register') }}" class="nav-link">
+                        <a href="{{ route('student_registration.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-user-plus"></i>
                             <p>
-                                Register
+                                Student Registration
                             </p>
                         </a>
                     </li>
@@ -53,6 +53,26 @@
                         </a>
                     </li>
                     @endif --}}
+                    @can('users.index')
+                    <li class="nav-item">
+                        <a href="{{ route('users.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-user-lock"></i>
+                            <p>
+                                Users
+                            </p>
+                        </a>
+                    </li>
+                    @endcan
+                    @can('classes.index')
+                    <li class="nav-item">
+                        <a href="{{ route('classes.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-users-class"></i>
+                            <p>
+                                Classes
+                            </p>
+                        </a>
+                    </li>
+                    @endcan
                     @can('evaluations.index')
                     <li class="nav-item">
                         <a href="{{ route('evaluations.index') }}" class="nav-link">
@@ -83,22 +103,22 @@
                         </a>
                     </li>
                     @endcan
-                    @can('classes.index')
-                    <li class="nav-item">
-                        <a href="{{ route('classes.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-users-class"></i>
-                            <p>
-                                Classes
-                            </p>
-                        </a>
-                    </li>
-                    @endcan
                     @can('courses.index')
                     <li class="nav-item">
                         <a href="{{ route('courses.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-book"></i>
                             <p>
                                 Courses
+                            </p>
+                        </a>
+                    </li>
+                    @endcan
+                    @can('subjects.index')
+                    <li class="nav-item">
+                        <a href="{{ route('subjects.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-book"></i>
+                            <p>
+                                Subjects
                             </p>
                         </a>
                     </li>
@@ -113,16 +133,6 @@
                         </a>
                     </li>
                     @endcan
-                    @can('users.index')
-                    <li class="nav-item">
-                        <a href="{{ route('users.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-user-lock"></i>
-                            <p>
-                                Users
-                            </p>
-                        </a>
-                    </li>
-                    @endcan
                     @can('questions.index')
                     <li class="nav-item">
                         <a href="{{ route('questions.index') }}" class="nav-link">
@@ -131,6 +141,26 @@
                         </a>
                     </li>
                     @endcan
+                    @can('school_year_semesters.index')
+                    <li class="nav-item">
+                        <a href="{{ route('school_year_semesters.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-calendar-alt"></i>
+                            <p>
+                                School Year & Semester
+                            </p>
+                        </a>
+                    </li>
+                    @endcan
+                    @hasrole('System Administrator')
+                    <li class="nav-item">
+                        <a href="{{ route("users.login_info") }}" class="nav-link">
+                            <i class="fa-fw fas fa-info-circle nav-icon">
+        
+                            </i>
+                            Login Info
+                        </a>
+                    </li>
+                    @endhasrole
                     @canany('roles.index', 'permission.index')
                     <li class="nav-item">
                         <a href="#" class="nav-link">

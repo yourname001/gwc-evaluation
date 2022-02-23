@@ -15,7 +15,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Student ID:</label><br>
-                                <input class="form-control" type="text" name="student_id" required value="{{ $student->student_id }}">
+                                <input class="form-control" oninput="this.value = this.value.toUpperCase()" type="text" name="student_id" required value="{{ $student->student_id }}">
                             </div>
                             <div class="form-group">
                                 <label>Year Level: <strong class="text-danger">*</strong></label><br>
@@ -23,19 +23,19 @@
                             </div>
                             <div class="form-group">
                                 <label>First Name: <strong class="text-danger">*</strong></label><br>
-                                <input class="form-control" type="text" name="first_name" value="{{ $student->first_name }}" required>
+                                <input class="form-control" oninput="this.value = this.value.toUpperCase()" type="text" name="first_name" value="{{ $student->first_name }}" required>
                             </div>
                             <div class="form-group">
                                 <label>Middle Name:</label><br>
-                                <input class="form-control" type="text" name="middle_name" value="{{ $student->middle_name }}">
+                                <input class="form-control" oninput="this.value = this.value.toUpperCase()" type="text" name="middle_name" value="{{ $student->middle_name }}">
                             </div>
                             <div class="form-group">
                                 <label>Last Name: <strong class="text-danger">*</strong></label><br>
-                                <input class="form-control" type="text" name="last_name" value="{{ $student->last_name }}" required>
+                                <input class="form-control" oninput="this.value = this.value.toUpperCase()" type="text" name="last_name" value="{{ $student->last_name }}" required>
                             </div>
                             <div class="form-group">
                                 <label>Suffix:</label><br>
-                                <input class="form-control" type="text" name="suffix" value="{{ $student->suffix }}">
+                                <input class="form-control" oninput="this.value = this.value.toUpperCase()" type="text" name="suffix" value="{{ $student->suffix }}">
                             </div>
                             <div class="form-group">
                                 <label>Gender: <strong class="text-danger">*</strong></label><br>
@@ -54,14 +54,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label>Contact #:</label><br>
-                                <input class="form-control" type="text" name="contact_number" value="{{ $student->contact_number }}">
+                                <input class="form-control" type="tel" pattern="^(09|\+639)\d{9}$" name="contact_number" value="{{ $student->contact_number }}">
                             </div>
                             <div class="form-group">
                                 <label>Address:</label>
                                 <textarea class="form-control" name="address" rows="3">{{ $student->address }}</textarea>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

@@ -5,7 +5,7 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" faculty="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Evaluate</h5>
+                    <h5 class="modal-title">Evaluate {{ $evaluation_class->class->faculty->fullname('') }}</h5>
                     <button type="button" class="close" data-dismiss="modal-ajax" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -20,31 +20,62 @@
                                 <label>Faculty:</label>
                                 {{ $evaluation_class->class->faculty->fullname('') }}
                             </div>
+                            <div class="form-group">
+                                <label>Subject:</label>
+                                {{ $evaluation_class->class->subject->subject_code }} |
+                                {{ $evaluation_class->class->subject->title }}
+                            </div>
                         </div>
                         <div class="col-md-8">
                             @foreach ($questions as $index => $question)
                             <div class="form-group">
                                 <p>{{ ($index+1) . ". " . $question->question }}</p>
-                                <div class="form-check form-check-inline">
-                                    <div class="custom-control custom-radio">
+                                {{-- <div class="form-check form-check-inline"> --}}
+                                    <div class="icheck-primary">
                                         <input type="radio" class="form-check-input" name="question[{{ $question->id }}]" value="strongly agree" id="stronglyAgree-{{ $question->id }}" required>
-                                        <label class="form-check-label" for="stronglyAgree-{{ $question->id }}">Strongly Agree</label>
+                                        <label for="stronglyAgree-{{ $question->id }}">Strongly Agree</label>
                                     </div>
-                                    <div class="custom-control custom-radio">
+                                    <div class="icheck-primary">
                                         <input type="radio" class="form-check-input" name="question[{{ $question->id }}]" value="agree" id="agree-{{ $question->id }}" required>
-                                        <label class="form-check-label" for="agree-{{ $question->id }}">Agree</label>
+                                        <label for="agree-{{ $question->id }}">Agree</label>
                                     </div>
-                                    <div class="custom-control custom-radio">
+                                    <div class="icheck-primary">
                                         <input type="radio" class="form-check-input" name="question[{{ $question->id }}]" value="disagree" id="disagree-{{ $question->id }}" required>
-                                        <label class="form-check-label" for="disagree-{{ $question->id }}">Disgree</label>
+                                        <label for="disagree-{{ $question->id }}">Disgree</label>
                                     </div>
-                                    <div class="custom-control custom-radio">
+                                    <div class="icheck-primary">
                                         <input type="radio" class="form-check-input" name="question[{{ $question->id }}]" value="strongly disagree" id="stronglyDisagree-{{ $question->id }}" required>
-                                        <label class="form-check-label" for="stronglyDisagree-{{ $question->id }}">Strongly Disgree</label>
+                                        <label for="stronglyDisagree-{{ $question->id }}">Strongly Disgree</label>
+                                    </div>
+                                {{-- </div> --}}
+                            </div>
+                            @endforeach
+                            <hr>
+                            <div class="form-group">
+                                <p>Rating</p>
+                                <div class="form-check">
+                                    <div class="icheck-primary">
+                                        <input type="radio" name="rating" value="1-2" id="rating-1-2" required>
+                                        <label for="rating-1-2">1-2 Poor</label>
+                                    </div>
+                                    <div class="icheck-primary">
+                                        <input type="radio" name="rating" value="3-4" id="rating-3-4" required>
+                                        <label for="rating-3-4">3-4 Needs Improvement</label>
+                                    </div>
+                                    <div class="icheck-primary">
+                                        <input type="radio" name="rating" value="5-6" id="rating-5-6" required>
+                                        <label for="rating-5-6">5-6 Need to excel  in areas which focuses in the learner centered aspects, good in some areas</label>
+                                    </div>
+                                    <div class="icheck-primary">
+                                        <input type="radio" name="rating" value="7-8" id="rating-7-8" required>
+                                        <label for="rating-7-8">7-8 Good but need to excel in some areas</label>
+                                    </div>
+                                    <div class="icheck-primary">
+                                        <input type="radio" name="rating" value="9-10" id="rating-9-10" required>
+                                        <label for="rating-9-10">9-10 Excellent!</label>
                                     </div>
                                 </div>
                             </div>
-                            @endforeach
                             <hr>
                             <div class="form-group">
                                 <label>Positive Comments:</label>
@@ -110,6 +141,32 @@
                             @endforeach
                             <hr>
                             <div class="form-group">
+                                <p>Rating</p>
+                                <div class="form-check">
+                                    <div class="custom-control custom-radio">
+                                        <i class="far fa-circle" id="confirm_rating-1-2"></i>
+                                        <label class="form-check-label" for="rating-1-2">1-2 Poor</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <i class="far fa-circle" id="confirm_rating-3-4"></i>
+                                        <label class="form-check-label" for="rating-3-4">3-4 Needs Improvement</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <i class="far fa-circle" id="confirm_rating-5-6"></i>
+                                        <label class="form-check-label" for="rating-5-6">5-6 Need to excel  in areas which focuses in the learner centered aspects, good in some areas</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <i class="far fa-circle" id="confirm_rating-7-8"></i>
+                                        <label class="form-check-label" for="rating-7-8">7-8 Good but need to excel in some areas</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <i class="far fa-circle" id="confirm_rating-9-10"></i>
+                                        <label class="form-check-label" for="rating-9-10">9-10 Excellent!</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="form-group">
                                 <label>Positive Comments:</label>
                                 <p id="confirm_positive_comments"></p>
                             </div>
@@ -135,7 +192,11 @@
         });
 
         $('#confirmCreateEvaluationStudent').on('click', function(){
-            $('.form-check-input:checked').each(function(){
+            $('.icheck-primary input').each(function(){
+                $('#confirm_'+$(this).attr('id')).removeClass('fas')
+                $('#confirm_'+$(this).attr('id')).addClass('far')
+            })
+            $('.icheck-primary input:checked').each(function(){
                 $('#confirm_'+$(this).attr('id')).removeClass('far')
                 $('#confirm_'+$(this).attr('id')).addClass('fas')
             })

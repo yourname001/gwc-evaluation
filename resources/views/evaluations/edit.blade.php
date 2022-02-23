@@ -23,7 +23,7 @@
                                     <option></option>
                                     @foreach ($classes as $class)
                                         <option value="{{ $class->id }}" @if(in_array($class->id, $evaluationClassIDs)) selected @endif>
-                                            {{ $class->course->course_code }} - 
+                                            {{ $class->subject->subject_code }} - 
                                             {{ $class->section }}
                                             {{ $class->title }}
                                             (Faculty: {{ $class->faculty->fullname('') }})

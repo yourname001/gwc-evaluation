@@ -15,6 +15,7 @@ class EvaluationStudent extends Model
         // 'evaluation_faculty_id',
         'evaluation_class_id',
         'student_id',
+        'rating',
         'positive_comments',
         'negative_comments',
     ];
@@ -37,6 +38,32 @@ class EvaluationStudent extends Model
     public function evaluationStudentReponses()
     {
         return $this->hasMany('App\Models\EvaluationStudentResponse', 'evaluation_student_id');
+    }
+
+    public function getRating()
+    {
+        $rating = "";
+        switch ($this->rating) {
+            case '0':
+                $rating = "Not Applicable";
+                break;
+            case '3-2':
+                $rating = "Needs Improvement";
+                break;
+            case '5-6':
+                $rating = "Need to excel  in areas which focuses in the learner centered aspects, good in some areas";
+                break;
+            case '7-8':
+                $rating = "Good but need to excel in some areas";
+                break;
+            case '9-10':
+                $rating = "Excellent!";
+                break;
+            default:
+                $rating = "Not Applicable";
+                break;
+        }
+        return $rating;
     }
 
 }

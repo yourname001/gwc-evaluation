@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -72,12 +73,17 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
+        
+        $data = [
+            'course' => $course,
+            'selectSubjects' => Subject::get()
+        ];
         if(request()->ajax()){
             return response()->json([
-                'modal_content' => view('courses.show', compact('course'))->render()
+                'modal_content' => view('courses.show', $data)->render()
             ]);
         }else{
-            return view('courses.show', compact('course'));
+            return view('courses.show', $data);
         }
     }
 

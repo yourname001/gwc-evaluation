@@ -45,12 +45,35 @@
                 </form>
             </div>
             <div class="col-md-3">
+                <form class="form-inline" id="form-updateStatus" action="{{ route('students.update_status', $student->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <label>Status:</label>
+                    <div class="btn-group btn-group-sm btn-group-toggle update-status-btn-group" data-toggle="buttons">
+                        <label class="btn btn-{{ $student->status == 'activated' ? 'info' : 'primary' }}">
+                            <input class="update-status-btn" {{ $student->status == 'activated' ? 'disabled' : '' }} type="radio" name="status" value="activated" autocomplete="off"> Activated
+                        </label>
+                        <label class="btn btn-{{ $student->status == 'drop' ? 'info' : 'primary' }}">
+                            <input class="update-status-btn" {{ $student->status == 'drop' ? 'disabled' : '' }} type="radio" name="status" value="drop" autocomplete="off"> Drop
+                        </label>
+                        <label class="btn btn-{{ $student->status == 'graduated' ? 'info' : 'primary' }}">
+                            <input class="update-status-btn" {{ $student->status == 'graduated' ? 'disabled' : '' }} type="radio" name="status" value="graduated" autocomplete="off"> Graduated
+                        </label>
+                    </div>
+                </form>
+                <label>Course: </label>
+                {{ $student->course->name ?? "" }}
+                <br>
+                <label>Curriculum Status: </label>
+                {{ $student->getCurriculumStatus() }}
+                <br>
                 <label>Student ID: </label>
                 {{ $student->student_id }}
                 <br>
                 <label>Year Level: </label>
                 {{ $student->year_level }}
-                <br>
+            </div>
+            <div class="col-md-3">
                 <label>First Name: </label>
                 {{ $student->first_name }}
                 <br>
@@ -62,16 +85,15 @@
                 <br>
                 <label>Suffix: </label>
                 {{ $student->suffix }}
-            </div>
-            <div class="col-md-3">
+                <br>
                 <label>Gender: </label>
                 {{ $student->gender }}
                 <br>
-                <label>Contact #: </label>
+                {{-- <label>Contact #: </label>
                 {{ $student->contact_number }}
                 <br>
                 <label>Address: </label>
-                {{ $student->address }}
+                {{ $student->address }} --}}
             </div>
             <div class="col-md-3">
                 <label>Account Status: </label>
@@ -134,13 +156,13 @@
                                     <th>ID</th>
                                     @endhasrole
                                     <th>Section</th>
-                                    <th>Course</th>
+                                    <th>Subject</th>
                                     <th>Faculty</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($student->classes as $class)
-                                <tr @if($class->trashed()) class="table-danger" @endif>
+                                <tr @if($class->class->trashed()) class="table-danger" @endif>
                                     @hasrole('System Administrator')
                                     <td>
                                         {{ $class->id }}
@@ -150,17 +172,14 @@
                                         {{ $class->class->section }}
                                     </td>
                                     <td>
-                                        {{ $class->class->course->course_code }} -
-                                        {{ $class->class->course->title }}
+                                        {{ $class->class->subject->subject_code }} -
+                                        {{ $class->class->subject->title }}
                                     </td>
                                     <td>
                                         {{ $class->class->faculty->fullname('') }}
                                     </td>
                                 </tr>
                                 @empty
-                                <tr>
-                                    <td class="text-center text-danger" colspan="8">*** EMPTY ***</td>
-                                </tr>
                                 @endforelse
                             </tbody>
                         </table>
@@ -173,6 +192,24 @@
 </section>
 @endsection
 @section('script')
+    <script>
+        $(function(){
+            $('.update-status-btn').on('click', function(){
+                if (confirm('Are you sure do you want to update the status from {{ $student->status }} to ' + $(this).val())) {
+                    $('#form-updateStatus').submit()
+                }else{
+                    $('.update-status-btn').prop('checked', false)
+                    $('.update-status-btn:focus').parent().blur()
+                    $('.update-status-btn:focus').blur()
+                    $(this).parent().css({
+                        "background-color" : "#007bff",
+                        "border-color" : "#007bff"
+                    })
+                }
+                
+            })
+        })
+    </script>
     <script>
         $(function(){
             $('#upload').change(function(){

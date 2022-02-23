@@ -15,18 +15,22 @@ class CreateClassesTable extends Migration
     {
         Schema::create('classes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->boolean('is_active');
-            $table->unsignedBigInteger('course_id');
+            $table->unsignedBigInteger('school_year_semester_id');
+            $table->unsignedBigInteger('subject_id');
             $table->unsignedBigInteger('faculty_id');
             $table->string('section')->nullable();
-            $table->string('school_year')->nullable();
             $table->string('schedule')->nullable();
 			$table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('course_id')
+            $table->foreign('school_year_semester_id')
                 ->references('id')
-                ->on('courses')
+                ->on('school_year_semester')
+				->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreign('subject_id')
+                ->references('id')
+                ->on('subjects')
 				->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreign('faculty_id')

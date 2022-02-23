@@ -13,71 +13,37 @@ class CoursesTableSeeder extends Seeder
     public function run()
     {
         Course::insert([
-            // 1st year 1st Sem 
             [
-                'course_code' => 'CC101',
-                'title' => 'Introduction of Computing',
+                'department_id' => 3,
+                'name' => 'Bachelor of Science in Information Technology'
             ],
             [
-                'course_code' => 'CC102',
-                'title' => 'Fundamentals of Programming (Java)',
+                'department_id' => 3,
+                'name' => 'Bachelor of Science in Computer Science'
             ],
             [
-                'course_code' => 'PSYCH 1',
-                'title' => 'Understanding the Self',
+                'department_id' => 2,
+                'name' => 'Bachelor of Science in Criminology'
             ],
             [
-                'course_code' => 'SOCSCI 1',
-                'title' => 'Reading in the Philippine History',
+                'department_id' => 1,
+                'name' => 'Bachelor of Secondary Education Major in English'
             ],
             [
-                'course_code' => 'MATH 1',
-                'title' => 'Mathematics in the Modern World',
+                'department_id' => 4,
+                'name' => 'Bachelor of Science in Business Administration'
             ],
             [
-                'course_code' => 'FIL 1',
-                'title' => 'Kontekstwalisadong Komunikasyon sa Filipino',
+                'department_id' => 1,
+                'name' => 'Bachelor of Technical-Vocational Teacher Education (Major in Automotive Technology)'
             ],
             [
-                'course_code' => 'NSTP 1',
-                'title' => 'Civic Welfare Training Service 1',
+                'department_id' => 1,
+                'name' => 'Bachelor of Technical-Vocational Teacher Education (Major in Electrical Technology)'
             ],
             [
-                'course_code' => 'PE 1',
-                'title' => 'Movement Enhancement',
-            ],
-            // 1st Year 2nd Sem
-            [
-                'course_code' => 'DS101',
-                'title' => 'Discrete Structured',
-            ],
-            [
-                'course_code' => 'CC103',
-                'title' => 'Intermediate Programming (Adv. Java)',
-            ],
-            [
-                'course_code' => 'ENGL 1',
-                'title' => 'Purposive Communication',
-            ],
-            [
-                'course_code' => 'SCi 1',
-                'title' => 'Science, Technology and Society',
-            ],
-            [
-                'course_code' => 'PHILO 1',
-                'title' => 'Ethics',
-            ],
-            [
-                'course_code' => 'FIL 2',
-                'title' => "Filipino sa iba't ibang disiplina",
-            ],
-            [
-                'course_code' => 'NSTP 2',
-                'title' => 'Civic Welfare Training Service 2',
-            ],
-            [
-                'course_code' => 'PE 2',
-                'title' => 'Fitness Exercise',
+                'department_id' => 1,
+                'name' => 'Bachelor of Technical-Vocational Teacher Education (Major in Electronics Technology)'
             ],
         ]);
     }

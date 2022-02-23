@@ -29,11 +29,17 @@
                             </div> --}}
                             <div class="form-group">
                                 <label>Classes:</label>
-                                <select class="form-control select2" name="classes[]" multiple required>
+                                <br>
+                                <div class="icheck-primary d-inline">
+                                    <input type="checkbox" id="addAllActiveClasses" name="add_all_active_classes" value="1">
+                                    <label for="addAllActiveClasses">Add all active classes this semester</label>
+                                </div>
+                                <br>
+                                <select id="selectClasses" class="form-control select2" name="classes[]" required multiple>
                                     <option></option>
                                     @foreach ($classes as $class)
                                         <option value="{{ $class->id }}">
-                                            {{ $class->course->course_code }} - 
+                                            {{ $class->subject->subject_code }} - 
                                             {{ $class->section }}
                                             {{ $class->title }}
                                             (Faculty: {{ $class->faculty->fullname('') }})
@@ -74,6 +80,14 @@
     $(function(){
         $('.datetimepicker-no-past').datetimepicker({
             minDate: new Date()
+        });
+
+        $('#addAllActiveClasses').change(function(){
+            if($(this).is(':checked')){
+                $('#selectClasses').prop('disabled', true);
+            }else{
+                $('#selectClasses').prop('disabled', false);
+            }
         });
     })
 </script>

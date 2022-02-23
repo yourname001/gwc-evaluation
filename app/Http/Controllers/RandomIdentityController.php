@@ -9,6 +9,7 @@ use App\Models\Faculty;
 use App\Models\User;
 use App\Models\UserStudent;
 use App\Models\UserFaculty;
+use App\Models\Course;
 use Carbon\Carbon;
 
 class RandomIdentityController extends Controller
@@ -27,13 +28,14 @@ class RandomIdentityController extends Controller
 			$bdate = $this->bdate();
 			$studentID = $this->student_id();
 			$contactNumber = $this->phone();
-
+			$course = Course::inRandomOrder()->first();
 			$student = Student::create([
 				'student_id' => $studentID,
+				'course_id' => $course->id,
 				'year_level' => is_null($request->get('year_level')) ? rand(1,4) : $request->get('year_level'),
-				'first_name' => $fname,
-				'middle_name' => $middle_name,
-				'last_name' => $last_name,
+				'first_name' => strtoupper($fname),
+				'middle_name' => strtoupper($middle_name),
+				'last_name' => strtoupper($last_name),
 				'gender' => $sex,
 				'birth_date' => $bdate,
 				'contact_number' => $contactNumber,
@@ -83,9 +85,9 @@ class RandomIdentityController extends Controller
 			$bdate = $this->bdate();
 			$faculty = Faculty::create([
 				'faculty_id' => $this->student_id(),
-				'first_name' => $fname,
-				'middle_name' => $mname,
-				'last_name' => $lname,
+				'first_name' => strtoupper($fname),
+				'middle_name' => strtoupper($mname),
+				'last_name' => strtoupper($lname),
 				'gender' => $sex,
 				'contact_number' => $this->phone(),
 				'address' => $brgy . ', ' . $city . ', ' . $province

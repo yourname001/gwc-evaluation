@@ -8,20 +8,31 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Student;
 use App\Models\User;
 use App\Models\UserStudent;
+use App\Models\Course;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\StudentRegistrationMail;
 
 
 class StudentRegistrationController extends Controller
 {
+    public function index()
+    {
+        $data = [
+            'courses' => Course::get()
+        ];
+        return view('auth.register', $data);
+    }
+
     public function registrationComplete()
     {
         return view('auth.registration_success');
     }
+    
     public function register(Request $request)
     {
         $request->validate([
-			'school_id' => 'required',
+			'school_id' => 'required|image|mimes:jpeg,png,jpg',
+			'course' => 'required',
 			'student_id' => ['required', 'unique:students,student_id', 'unique:users,username'],
 			'year_level' => 'required',
 			'first_name' => 'required',
@@ -35,12 +46,13 @@ class StudentRegistrationController extends Controller
         ]);
 
 		$student = Student::create([
-			'student_id' => $request->get('student_id'),
+			'student_id' => strtoupper($request->get('student_id')),
+			'course_id' => $request->get('course'),
 			'year_level' => $request->get('year_level'),
-			'first_name' => $request->get('first_name'),
-			'middle_name' => $request->get('middle_name'),
-			'last_name' => $request->get('last_name'),
-			'suffix' => $request->get('suffix'),
+			'first_name' => strtoupper($request->get('first_name')),
+			'middle_name' => strtoupper($request->get('middle_name')),
+			'last_name' => strtoupper($request->get('last_name')),
+			'suffix' => strtoupper($request->get('suffix')),
 			'gender' => $request->get('gender'),
 			'contact_number' => $request->get('contact_number'),
 			'address' => $request->get('address'),
@@ -84,7 +96,7 @@ class StudentRegistrationController extends Controller
             'student_id' => $student->id
         ]);
 
-        Mail::to($user->email)->send(new StudentRegistrationMail($user));
+        // Mail::to($user->email)->send(new StudentRegistrationMail($user));
 
 		return redirect()->route('registration_complete')->with('alert-success', 'Saved');
     }

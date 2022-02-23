@@ -40,21 +40,13 @@ class Install extends Command
     public function handle()
     {
         Schema::disableForeignKeyConstraints();
-        $this->call('migrate:reset');
+        $this->call('migrate:fresh');
         $this->info("Driver: " . config('database.connections.mysql.driver'));
         $this->info("Database: " . config('database.connections.mysql.database'));
         $this->info("Host: " . config('database.connections.mysql.host'));
         $this->info("Port: " . config('database.connections.mysql.port'));
-        // $this->info("Migrations: " . config('database.migrations'));
-        $this->call('migrate:status');
-        // $bar = $this->output->createProgressBar(10);
-		// $bar->start();
-        // $this->call('migrate:fresh');
-        $this->call('migrate');
-        $this->info("Migration Finished");
         $this->call('db:seed');
-        $this->info("Seeding Finished");
-        $this->call('key:generate');
+        // $this->call('key:generate');
         $this->call('config:cache');
         // $bar->advance();
         // $bar->finish();

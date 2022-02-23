@@ -20,9 +20,6 @@
                     <table id="datatable" class="table table-sm table-bordered table-hover">
                         <thead>
                             <tr>
-                                @role('System Administrator')
-                                <th>ID</th>
-                                @endrole
                                 <th>Status</th>
                                 <th>Question</th>
                                 @role('System Administrator')
@@ -33,9 +30,6 @@
                         <tbody>
                             @foreach ($questions as $question)
                             <tr @unlessrole('System Administrator') @can('questions.show') data-toggle="modal-ajax" data-target="#showQuestion" data-href="{{ route('questions.show', $question->id) }}"  @endcan @else class="{{ $question->trashed() ? 'table-danger' : '' }}" @endunlessrole>
-                                @role('System Administrator')
-                                <td>{{ $question->id }}</td>
-                                @endrole
                                 <td>
                                     @if($question->is_active == 1)
                                     <span class="badge badge-success">Active</span>

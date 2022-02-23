@@ -4,8 +4,8 @@
             <div class="modal-header">
                 <h5 class="modal-title">
                     {{ $evaluationStudent->evaluationClass->class->faculty->getFacultyName() }} |
-                    {{ $evaluationStudent->evaluationClass->class->course->course_code }} -
-                    {{ $evaluationStudent->evaluationClass->class->course->title }}
+                    {{ $evaluationStudent->evaluationClass->class->subject->subject_code }} -
+                    {{ $evaluationStudent->evaluationClass->class->subject->title }}
                 </h5>
                 <button type="button" class="close" data-dismiss="modal-ajax" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -50,6 +50,32 @@
                             </div>
                         </div>
                         @endforeach
+                        <hr>
+                        <div class="form-group">
+                            <p>Rating</p>
+                            <div class="form-check">
+                                <div class="custom-control custom-radio">
+                                    <i class="@if($evaluationStudent->rating == '0') fas @else far @endif fa-circle" id="confirm_rating-0"></i>
+                                    <label class="form-check-label" for="rating-0">Not Applicable</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <i class="@if($evaluationStudent->rating == '2-3') fas @else far @endif fa-circle" id="confirm_rating-2-3"></i>
+                                    <label class="form-check-label" for="rating-2-3">3-2 Needs Improvement</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <i class="@if($evaluationStudent->rating == '5-6') fas @else far @endif fa-circle" id="confirm_rating-5-6"></i>
+                                    <label class="form-check-label" for="rating-5-6">5-6 Need to excel  in areas which focuses in the learner centered aspects, good in some areas</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <i class="@if($evaluationStudent->rating == '7-8') fas @else far @endif fa-circle" id="confirm_rating-7-8"></i>
+                                    <label class="form-check-label" for="rating-7-8">7-8 Good but need to excel in some areas</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <i class="@if($evaluationStudent->rating == '9-10') fas @else far @endif fa-circle" id="confirm_rating-9-10"></i>
+                                    <label class="form-check-label" for="rating-9-10">9-10 Excellent!</label>
+                                </div>
+                            </div>
+                        </div>
                         <hr>
                         <div class="form-group">
                             <label>Positive Comments:</label>

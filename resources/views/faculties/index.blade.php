@@ -26,10 +26,10 @@
                     <table id="datatable" class="table table-sm table-bordered table-hover">
                         <thead>
                             <tr>
-                                @role('System Administrator')
+                                {{-- @role('System Administrator')
                                 <th>ID</th>
                                 @endrole
-                                <th>Account Status</th>
+                                <th>Account Status</th> --}}
                                 <th>Department</th>
                                 <th>Faculty ID</th>
                                 <th>First Name</th>
@@ -43,10 +43,10 @@
                         <tbody>
                             @foreach ($faculties as $faculty)
                             <tr @unlessrole('System Administrator') @can('faculties.show') data-toggle="tr-link" data-href="{{ route('faculties.show', $faculty->id) }}"  @endcan @else class="{{ $faculty->trashed() ? 'table-danger' : '' }}" @endunlessrole>
-                                @role('System Administrator')
+                                {{-- @role('System Administrator')
                                 <td>{{ $faculty->id }}</td>
-                                @endrole
-                                <td>
+                                @endrole --}}
+                                {{-- <td>
                                     @isset ($faculty->user)
                                         @if($faculty->user->user->trashed())
                                         <span class="badge badge-danger">User data DELETED</span>
@@ -60,7 +60,7 @@
                                     @else
                                         <span class="text-danger">N/A</span>
                                     @endif
-                                </td>
+                                </td> --}}
                                 <td>{{ $faculty->department->name ?? "N/A" }}</td>
                                 <td>{{ $faculty->faculty_id }}</td>
                                 <td>{{ $faculty->first_name }}</td>

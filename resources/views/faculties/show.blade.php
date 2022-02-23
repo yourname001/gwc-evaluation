@@ -52,7 +52,8 @@
                 <br>
                 <label>Department: </label>
                 {{ $faculty->department->name ?? "N/A" }}
-                <br>
+            </div>
+            <div class="col-md-3">
                 <label>First Name: </label>
                 {{ $faculty->first_name }}
                 <br>
@@ -64,16 +65,15 @@
                 <br>
                 <label>Suffix: </label>
                 {{ $faculty->suffix }}
-            </div>
-            <div class="col-md-3">
+                <br>
                 <label>Gender: </label>
                 {{ $faculty->gender }}
-                <br>
+                {{-- <br>
                 <label>Contact #: </label>
                 {{ $faculty->contact_number }}
                 <br>
                 <label>Address: </label>
-                {{ $faculty->address }}
+                {{ $faculty->address }} --}}
             </div>
             <div class="col-md-3">
                 <label>Account Status: </label>
@@ -132,9 +132,6 @@
                         <table id="datatable" class="table table-sm table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    @hasrole('System Administrator')
-                                    <th>ID</th>
-                                    @endhasrole
                                     <th>Section</th>
                                     <th>Course</th>
                                     <th>Students</th>
@@ -143,17 +140,12 @@
                             <tbody>
                                 @forelse ($faculty->classes as $class)
                                 <tr @hasrole('System Administrator') @if($class->trashed()) class="table-danger" @endif @endhasrole >
-                                    @hasrole('System Administrator')
-                                    <td>
-                                        {{ $class->id }}
-                                    </td>
-                                    @endhasrole
                                     <td>
                                         {{ $class->section }}
                                     </td>
                                     <td>
-                                        {{ $class->course->course_code }} -
-                                        {{ $class->course->title }}
+                                        {{ $class->subject->subject_code }} -
+                                        {{ $class->subject->title }}
                                     </td>
                                     <td>
                                         <ul>

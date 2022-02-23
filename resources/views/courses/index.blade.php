@@ -13,7 +13,6 @@
             </div>
         </div>
     </div>
-
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -24,8 +23,8 @@
                                 @role('System Administrator')
                                 <th>ID</th>
                                 @endrole
-                                <th>Course Code</th>
-                                <th>Title</th>
+                                <th>Department</th>
+                                <th>Name</th>
                                 <th>Description</th>
                                 @role('System Administrator')
                                 <th class="text-center">Action</th>
@@ -38,12 +37,12 @@
                                 @role('System Administrator')
                                 <td>{{ $course->id }}</td>
                                 @endrole
-                                <td>{{ $course->course_code }}</td>
-                                <td>{{ $course->title }}</td>
+                                <td>{{ $course->department->name }}</td>
+                                <td>{{ $course->name }}</td>
                                 <td>{{ $course->description }}</td>
                                 @role('System Administrator')
                                     <td class="text-center">
-                                        <a href="javascript:void(0)" data-toggle="modal-ajax" data-target="#showCourse" data-href="{{ route('courses.show',$course->id) }}"><i class="fad fa-file fa-lg"></i></a>
+                                        <a href="{{ route('courses.show',$course->id) }}"><i class="fad fa-file fa-lg"></i></a>
                                         {{-- <a href="javascript:void(0)" data-toggle="modal-ajax" data-target="#editClasse" data-href="{{ route('courses.edit',$course->id) }}"><i class="fad fa-edit fa-lg"></i></a> --}}
                                         @if ($course->trashed())
                                             <a class="text-success" href="javascript:void(0)" onclick="restoreFromTable(this)" data-href="{{ route('courses.restore', $course->id) }}"><i class="fad fa-download fa-lg"></i></a>

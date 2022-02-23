@@ -18,6 +18,7 @@ class CreateEvaluationStudentsTable extends Migration
             $table->unsignedBigInteger('evaluation_class_id');
             // $table->unsignedBigInteger('evaluation_faculty_id');
             $table->unsignedBigInteger('student_id');
+            $table->string('rating');
             $table->text('positive_comments')->nullable();
             $table->text('negative_comments')->nullable();
 			$table->timestamps();

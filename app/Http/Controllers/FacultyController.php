@@ -80,11 +80,11 @@ class FacultyController extends Controller
 
 		$faculty = Faculty::create([
 			'department_id' => $request->get('department'),
-			'faculty_id' => $request->get('faculty_id'),
-			'first_name' => $request->get('first_name'),
-			'middle_name' => $request->get('middle_name'),
-            'last_name' => $request->get('last_name'),
-            'suffix' => $request->get('suffix'),
+			'faculty_id' => strtoupper($request->get('faculty_id')),
+			'first_name' => strtoupper($request->get('first_name')),
+			'middle_name' => strtoupper($request->get('middle_name')),
+            'last_name' => strtoupper($request->get('last_name')),
+            'suffix' => strtoupper($request->get('suffix')),
 			'gender' => $request->get('gender'),
 			'contact_number' => $request->get('contact_number'),
 			'address' => $request->get('address'),
@@ -166,11 +166,11 @@ class FacultyController extends Controller
 
 		$faculty->update([
             'department_id' => $request->get('department'),
-			'faculty_id' => $request->get('faculty_id'),
-			'first_name' => $request->get('first_name'),
-			'middle_name' => $request->get('middle_name'),
-			'last_name' => $request->get('last_name'),
-			'suffix' => $request->get('suffix'),
+			'faculty_id' => strtoupper($request->get('faculty_id')),
+			'first_name' => strtoupper($request->get('first_name')),
+			'middle_name' => strtoupper($request->get('middle_name')),
+			'last_name' => strtoupper($request->get('last_name')),
+			'suffix' => strtoupper($request->get('suffix')),
 			'gender' => $request->get('gender'),
 			'contact_number' => $request->get('contact_number'),
 			'address' => $request->get('address'),

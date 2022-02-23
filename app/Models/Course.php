@@ -12,13 +12,24 @@ class Course extends Model
     protected $table = 'courses';
 
     protected $fillable = [
-        'course_code',
-        'title',
+        'department_id',
+        'name',
         'description',
     ];
 
-    public function classes()
+    public function department()
     {
-        return $this->hasMany('App\Models\Classes', 'course_id');
+        return $this->belongsTo('App\Models\Department', 'department_id');
     }
+
+    public function subjects()
+    {
+        return $this->hasMany('App\Models\CourseSubject', 'course_id');
+    }
+
+    public function students()
+    {
+        return $this->hasMany('App\Models\Student', 'course_id');
+    }
+
 }

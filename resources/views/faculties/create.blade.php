@@ -25,23 +25,23 @@
                             </div>
                             <div class="form-group">
                                 <label>Faculty ID: <strong class="text-danger">*</strong></label><br>
-                                <input class="form-control" type="text" name="faculty_id" required>
+                                <input class="form-control" oninput="this.value = this.value.toUpperCase()" type="text" name="faculty_id" required>
                             </div>
                             <div class="form-group">
                                 <label>First Name: <strong class="text-danger">*</strong></label><br>
-                                <input class="form-control" type="text" name="first_name" required>
+                                <input class="form-control" oninput="this.value = this.value.toUpperCase()" type="text" name="first_name" required>
                             </div>
                             <div class="form-group">
                                 <label>Middle Name:</label><br>
-                                <input class="form-control" type="text" name="middle_name">
+                                <input class="form-control" oninput="this.value = this.value.toUpperCase()" type="text" name="middle_name">
                             </div>
                             <div class="form-group">
                                 <label>Last Name: <strong class="text-danger">*</strong></label><br>
-                                <input class="form-control" type="text" name="last_name" required>
+                                <input class="form-control" oninput="this.value = this.value.toUpperCase()" type="text" name="last_name" required>
                             </div>
                             <div class="form-group">
                                 <label>Suffix:</label><br>
-                                <input class="form-control" type="text" name="suffix">
+                                <input class="form-control" oninput="this.value = this.value.toUpperCase()" type="text" name="suffix">
                             </div>
                             <div class="form-group">
                                 <label>Gender: <strong class="text-danger">*</strong></label><br>
@@ -60,14 +60,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label>Contact #:</label><br>
                                 <input class="form-control" type="text" name="contact_number">
                             </div>
                             <div class="form-group">
                                 <label>Address:</label>
                                 <textarea class="form-control" name="address" rows="3"></textarea>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">

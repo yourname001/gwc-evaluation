@@ -12,6 +12,7 @@
         "consoletvs/charts": "6.*",
         "fideloper/proxy": "^4.4",
         "intervention/image": "^2.7",
+        "jenssegers/agent": "^2.6",
         "laravel/framework": "^6.20.26",
         "laravel/telescope": "3.0",
         "laravel/tinker": "^2.5",

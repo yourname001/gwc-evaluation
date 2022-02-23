@@ -49,10 +49,10 @@
                                                     <div class="small-box bg-success">
                                                         <div class="inner">
                                                             <h4>
-                                                                {{ $evaluationClass->class->course->course_code }}
+                                                                {{ $evaluationClass->class->subject->subject_code }}
                                                             </h4>
                                                             <p>{{ $evaluationClass->class->section }}</p>
-                                                            <p>{{ $evaluationClass->class->course->title }}</p>
+                                                            <p>{{ $evaluationClass->class->subject->title }}</p>
                                                         </div>
                                                         <div class="icon">
                                                             <i class="fa fa-book"></i>

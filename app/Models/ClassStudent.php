@@ -18,11 +18,11 @@ class ClassStudent extends Model
 
     public function class()
     {
-        return $this->belongsTo('App\Models\Classes', 'class_id');
+        return $this->belongsTo('App\Models\Classes', 'class_id')->withTrashed();
     }
 
     public function student()
     {
-        return $this->belongsTo('App\Models\Student', 'student_id');
+        return $this->belongsTo('App\Models\Student', 'student_id')->withTrashed();
     }
 }

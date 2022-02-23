@@ -7,9 +7,16 @@
                 <h1 class="m-0">Classes</h1>
             </div>
             <div class="col-sm-6 text-right">
+                @isset($activeSemester->id)
                 @can('classes.create')
                     <button class="btn btn-default" type="button" data-toggle="modal-ajax" data-href="{{ route('classes.create') }}" data-target="#createClass"><i class="fa fa-plus"></i> Add</button>
                 @endcan
+                @else
+                <span class="alert alert-warning">
+                    <i class="fa fa-exclamation-circle fa-lg"></i> You cannot add class because there is no active semester.
+                </span>
+                @endisset
+                
             </div>
         </div>
     </div>
@@ -23,7 +30,7 @@
                                 @role('System Administrator')
                                 <th>ID</th>
                                 @endrole
-                                <th>Course</th>
+                                <th>Subject</th>
                                 <th>Faculty</th>
                                 <th>Students</th>
                                 {{-- <th>Schedule</th> --}}
@@ -40,8 +47,8 @@
                                 <td>{{ $class->id }}</td>
                                 @endrole
                                 <td>
-                                    {{ $class->course->course_code }} -
-                                    {{ $class->course->title }}
+                                    {{ $class->subject->subject_code }} -
+                                    {{ $class->subject->title }}
                                 </td>
                                 <td>{{ $class->faculty->fullname('') }}</td>
                                 <td>

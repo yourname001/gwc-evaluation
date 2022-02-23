@@ -61,11 +61,13 @@ class EvaluationStudentController extends Controller
     {
         $request->validate([
             'evaluation_class' => 'required',
-            'question' => 'required'
+            'question' => 'required',
+            'rating' => 'required'
         ]);
         $evaluationStudent = EvaluationStudent::create([
             'evaluation_class_id' => $request->get('evaluation_class'),
             'student_id' => Auth::user()->student->student_id,
+            'rating' => $request->get('rating'),
             'positive_comments' => $request->get('positive_comments'),
             'negative_comments' => $request->get('negative_comments'),
         ]);

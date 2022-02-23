@@ -1,0 +1,15 @@
+/* Google */
+Email		    : gwc.evaluation2404@gmail.com
+Password	    : loremipsumdolor69
+
+/* Github */
+Username	    : yourname001
+Email		    : gwc.evaluation2404@gmail.com
+Password	    : jm-ems00
+
+/* Hostinger */
+Email			: rerepasagoy@gmail.com
+Domain			: gwc-evaluation.xyz
+IP			    : 31.220.110.207
+Password		: AVU5U9Uw7y9@vib
+SSH Command		: ssh -p 65002 u721921882@31.220.110.201

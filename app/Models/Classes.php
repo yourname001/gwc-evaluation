@@ -13,22 +13,26 @@ class Classes extends Model
     protected $table = 'classes';
 
     protected $fillable = [
-        'is_active',
-        'course_id',
+        'school_year_semester_id',
+        'subject_id',
         'faculty_id',
         'section',
-        'school_year',
         'schedule',
     ];
 
-    public function course()
+    public function subject()
     {
-        return $this->belongsTo('App\Models\Course', 'course_id');
+        return $this->belongsTo('App\Models\Subject', 'subject_id');
     }
 
     public function faculty()
     {
         return $this->belongsTo('App\Models\Faculty', 'faculty_id')->withTrashed();
+    }
+
+    public function schoolYearSemester()
+    {
+        return $this->belongsTo('App\Models\SchoolYearSemester', 'school_year_semester_id');
     }
     
     public function students()

@@ -23,7 +23,7 @@ class CreateFacultiesTable extends Migration
             $table->string('last_name');
             $table->string('suffix')->nullable();
             $table->string('gender');
-            $table->string('contact_number')->unique();
+            $table->string('contact_number')->nullable()->unique();
             $table->text('address')->nullable();
             $table->timestamps();
             $table->softDeletes();

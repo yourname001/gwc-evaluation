@@ -184,7 +184,8 @@ return [
         Yajra\DataTables\DataTablesServiceProvider::class,
         // Barryvdh\DomPDF\ServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class
+        Intervention\Image\ImageServiceProvider::class,
+        Jenssegers\Agent\AgentServiceProvider::class,
         // ConsoleTVs\Charts\ChartsServiceProvider::class,
 
     ],
@@ -243,7 +244,8 @@ return [
         // 'Chart' => ConsoleTVs\Charts\ChartsServiceProvider::class,
         // 'PDF' => Barryvdh\DomPDF\Facade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-        'Image' => Intervention\Image\Facades\Image::class
+        'Image' => Intervention\Image\Facades\Image::class,
+        'Agent' => Jenssegers\Agent\Facades\Agent::class,
 
     ],
 

@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">{{ $class->faculty->fullname('') }}| {{ $class->course->course_code }} - {{ $class->course->title }}</h1>
+                <h1 class="m-0">{{ $class->faculty->fullname('') }}| {{ $class->subject->subject_code }} - {{ $class->subject->title }}</h1>
             </div>
             <div class="col-sm-6 text-right">
                 <a class="btn btn-primary" href="javascript:void(0)" data-toggle="modal-ajax" data-href="{{ route('classes.edit', $class->id) }}" data-target="#editClass"><i class="fad fa-edit"></i> Edit</a>
@@ -13,11 +13,11 @@
                 @else
                     <a class="btn btn-danger" href="javascript:void(0)" onclick="deleteFromTable(this)" data-href="{{ route('classes.destroy', $class->id) }}"><i class="fad fa-trash-alt"></i> Delete</a>
                 @endif
-                @if($class->is_active == 1)
+                {{-- @if($class->is_active == 1)
                 <a class="btn btn-secondary" href="{{ route('classes.index') }}"><i class="fa fa-check-circle"></i> Set as Inactive</a>
                 @else
                 <a class="btn btn-success" href="{{ route('classes.index') }}"><i class="fa fa-check-circle"></i> Set as Active</a>
-                @endif
+                @endif --}}
                 <a class="btn btn-default" href="{{ route('classes.index') }}"><i class="fa fa-arrow-left"></i> Back</a>
             </div>
         </div>
@@ -31,8 +31,8 @@
                         {{ $class->section }}
                     </div>
                     <div class="form-group mb-0">
-                        <label class="mb-0">Course:</label>
-                        {{ $class->course->course_code }} - {{ $class->course->title }}
+                        <label class="mb-0">Subject:</label>
+                        {{ $class->subject->subject_code }} - {{ $class->subject->title }}
                     </div>
                     <div class="form-group mb-0">
                         <label class="mb-0">Faculty:</label>

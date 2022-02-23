@@ -9,6 +9,7 @@ use App\Models\EvaluationStudent;
 use App\Models\EvaluationStudentResponse;
 use App\Models\Faculty;
 use App\Models\Classes;
+use App\Models\SchoolYearSemester;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Charts\EvaluationFacultyChart;
@@ -135,7 +136,7 @@ class EvaluationController extends Controller
         $request->validate([
             'title' => 'required',
             // 'faculties' => 'required',
-            'classes' => 'required',
+            // 'classes' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
         ]);
@@ -159,14 +160,23 @@ class EvaluationController extends Controller
             'end_date' => $end_date,
             'description' => $request->get('description'),
         ]);
-
-        if($request->get('classes')) {
-            $classes = $request->get('classes');
-            foreach($classes as $class_id){
+        if($request->get('add_all_active_classes') == 1){
+            $activeSemester = SchoolYearSemester::where('active', true)->whereDate('end_date', '>', $now)->first();
+            foreach($activeSemester->classes as $class){
                 EvaluationClasses::create([
                     'evaluation_id' => $evaluation->id,
-                    'class_id' => $class_id,
+                    'class_id' => $class->id,
                 ]);
+            }
+        }else{
+            if($request->get('classes')) {
+                $classes = $request->get('classes');
+                foreach($classes as $class_id){
+                    EvaluationClasses::create([
+                        'evaluation_id' => $evaluation->id,
+                        'class_id' => $class_id,
+                    ]);
+                }
             }
         }
 

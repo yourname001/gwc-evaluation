@@ -4,9 +4,10 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">{!! $evaluationClass->class->faculty->fullname('') !!} | {{ $evaluationClass->class->course->course_code }} - {{ $evaluationClass->class->course->title }} | {{ $evaluationClass->class->section }}</h1>
+                <h1 class="m-0">{!! $evaluationClass->class->faculty->fullname('') !!} | {{ $evaluationClass->class->subject->subject_code }} - {{ $evaluationClass->class->subject->title }} | {{ $evaluationClass->class->section }}</h1>
             </div>
             <div class="col-sm-6 text-right">
+                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#evaluatorsStatsModal"><i class="fad fa-chart-pie"></i> Evaluators Statistics</button>
                 @hasrole('System Administrator')
                 <a class="btn btn-primary" href="{{ route('evaluation_classes.export', ['evaluation_class_id' => $evaluationClass->id]) }}" target="_blank"><i class="fad fa-table"></i> Export Excel</a>
                 <a class="btn btn-primary" href="{{ route('evaluation_classes.send_email', $evaluationClass->id) }}"><i class="fad fa-envelope"></i> Send Email</a>
@@ -35,8 +36,8 @@
                             @forelse ($evaluationClass->evaluationStudentResponses()->groupBy('question') as $question => $responses)
                                 @foreach ($responses->groupBy('question_id') as $questionID => $response)
                                     <div class="col-md-3">
-                                        <div class="card">
-                                            <div class="card-header border-0">
+                                        <div class="card card-info card-outline">
+                                            <div class="card-header">
                                                 <div class="d-flex justify-content-between">
                                                     <h5 class="card-title">{{ $question }}</h5>
                                                 </div>
@@ -55,11 +56,27 @@
                             </div>
                             @endforelse
                         </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-info card-outline">
+                                    <div class="card-header">
+                                        <div class="d-flex justify-content-between">
+                                            <h5 class="card-title">Ratings</h5>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="position-relative mb-4">
+                                            {!! $evaluationRatingChart->container() !!}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        
         <div class="row">
             <div class="col">
                 <div class="card card-primary card-outline">
@@ -99,6 +116,23 @@
         </div>
     </div>
 </section>
+<div class="modal fade" id="evaluatorsStatsModal" data-backdrop="static" data-keyboard="false" tabindex="-1" faculty="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md" faculty="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Evaluators Statistics</h5>
+                <button type="button" class="close" data-dismiss="modal-ajax" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="position-relative mb-4">
+                    {!! $evaluatorsStatsChart->container() !!}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 @section('script')
     @foreach ($evaluationClass->evaluationStudentResponses()->groupBy('question') as $question => $responses)
@@ -106,4 +140,9 @@
         {!! $evaluationClassChart[$questionID]->script() !!}
         @endforeach 
     @endforeach
+    {!! $evaluationRatingChart->script() !!}
+    <script>
+        var evaluatorsStatsChart = new Chart('{{ $evaluatorsStatsChart->id }}')
+    </script>
+    {!! $evaluatorsStatsChart->script() !!}
 @endsection

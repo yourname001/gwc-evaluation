@@ -85,14 +85,14 @@
                                                 <div class="small-box @if($evaluationClass->isDone()) bg-success @else bg-warning @endif">
                                                     <div class="inner">
                                                         <h4>
-                                                            {{ $evaluationClass->class->course->course_code }}
+                                                            {{ $evaluationClass->class->subject->subject_code }}
                                                             {{-- @if($evaluationClass->isDone())
                                                             <i class="fa fa-check"></i>
                                                             @else
                                                             <i class="fa fa-times"></i>
                                                             @endif --}}
                                                         </h4>
-                                                        <p>{{ $evaluationClass->class->section }}</p>
+                                                        <p>{{ $evaluationClass->class->section }}&nbsp;</p>
                                                         <p>{{ $evaluationClass->class->faculty->fullname('') }}</p>
                                                     </div>
                                                     <div class="icon">

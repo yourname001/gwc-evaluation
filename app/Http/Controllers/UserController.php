@@ -9,6 +9,7 @@ use App\Models\Configuration\RolePermission\Role;
 use App\Models\Configuration\RolePermission\UserRole;
 use App\Models\UserFaculty;
 use App\Models\UserStudent;
+use App\Models\loginInfo;
 use Carbon\Carbon;
 use Auth;
 use Image;
@@ -328,5 +329,13 @@ class UserController extends Controller
                 return redirect()->route('users.account_settings', $user->id)->with('alert-success', 'Incorrect old password');
             }
         }
+    }
+
+    public function loginInfo()
+    {
+        $data = [
+            'loginInfos' => LoginInfo::get()
+        ];
+        return view('users.login_info', $data);
     }
 }
