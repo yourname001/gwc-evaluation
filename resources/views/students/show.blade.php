@@ -45,6 +45,18 @@
                 </form>
             </div>
             <div class="col-md-3">
+                <label>Course: </label>
+                {{ $student->course->name ?? "" }}
+                <br>
+                <label>Curriculum Status: </label>
+                {{ $student->getCurriculumStatus() }}
+                <br>
+                <label>Student ID: </label>
+                {{ $student->student_id }}
+                <br>
+                <label>Year Level: </label>
+                {{ $student->year_level }}
+                <br>
                 <form class="form-inline" id="form-updateStatus" action="{{ route('students.update_status', $student->id) }}" method="POST">
                     @csrf
                     @method('PUT')
@@ -61,17 +73,6 @@
                         </label>
                     </div>
                 </form>
-                <label>Course: </label>
-                {{ $student->course->name ?? "" }}
-                <br>
-                <label>Curriculum Status: </label>
-                {{ $student->getCurriculumStatus() }}
-                <br>
-                <label>Student ID: </label>
-                {{ $student->student_id }}
-                <br>
-                <label>Year Level: </label>
-                {{ $student->year_level }}
             </div>
             <div class="col-md-3">
                 <label>First Name: </label>

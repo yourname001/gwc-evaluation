@@ -63,42 +63,12 @@
                         </a>
                     </li>
                     @endcan
-                    @can('classes.index')
+                    @can('departments.index')
                     <li class="nav-item">
-                        <a href="{{ route('classes.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-users-class"></i>
+                        <a href="{{ route('departments.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-network-wired"></i>
                             <p>
-                                Classes
-                            </p>
-                        </a>
-                    </li>
-                    @endcan
-                    @can('evaluations.index')
-                    <li class="nav-item">
-                        <a href="{{ route('evaluations.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-poll-people"></i>
-                            <p>
-                                Evaluations
-                            </p>
-                        </a>
-                    </li>
-                    @endcan
-                    @can('students.index')
-                    <li class="nav-item">
-                        <a href="{{ route('students.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-user-graduate"></i>
-                            <p>
-                                Students
-                            </p>
-                        </a>
-                    </li>
-                    @endcan
-                    @can('faculties.index')
-                    <li class="nav-item">
-                        <a href="{{ route('faculties.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-user-tie"></i>
-                            <p>
-                                Faculties
+                                Departments
                             </p>
                         </a>
                     </li>
@@ -123,12 +93,42 @@
                         </a>
                     </li>
                     @endcan
-                    @can('departments.index')
+                    @can('classes.index')
                     <li class="nav-item">
-                        <a href="{{ route('departments.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-network-wired"></i>
+                        <a href="{{ route('classes.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-users-class"></i>
                             <p>
-                                Departments
+                                Classes
+                            </p>
+                        </a>
+                    </li>
+                    @endcan
+                    @can('faculties.index')
+                    <li class="nav-item">
+                        <a href="{{ route('faculties.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-user-tie"></i>
+                            <p>
+                                Faculties
+                            </p>
+                        </a>
+                    </li>
+                    @endcan
+                    @can('students.index')
+                    <li class="nav-item">
+                        <a href="{{ route('students.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-user-graduate"></i>
+                            <p>
+                                Students
+                            </p>
+                        </a>
+                    </li>
+                    @endcan
+                    @can('evaluations.index')
+                    <li class="nav-item">
+                        <a href="{{ route('evaluations.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-poll-people"></i>
+                            <p>
+                                Evaluations
                             </p>
                         </a>
                     </li>

@@ -226,6 +226,10 @@ class StudentController extends Controller
     {
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg'
+        ],
+        [
+            'image.image' => 'Invalid file type.',
+            'image.mimes' => 'Avatar must jpg, jpeg, or png.',
         ]);
         $avatar= $request->file('image');
         $thumbnailImage = Image::make($avatar);

@@ -98,7 +98,7 @@ class EvaluationClassExport implements FromView, WithCharts
         $plot   = new PlotArea(null, [$series]);
 
         $legend = new Legend();
-        $chart  = new Chart($evaluationClass->class->faculty->fullname('').' Evaluation Chart', new Title($evaluationClass->class->faculty->fullname('').' | '.$evaluationClass->class->course->course_code.' - '.$evaluationClass->class->course->title), $legend, $plot);
+        $chart  = new Chart($evaluationClass->class->faculty->fullname('').' Evaluation Chart', new Title($evaluationClass->class->faculty->fullname('').' | '.$evaluationClass->class->subject->subject_code.' - '.$evaluationClass->class->subject->title), $legend, $plot);
 
         $chart->setTopLeftPosition('G8');
         $chart->setBottomRightPosition('W25');
